@@ -1,0 +1,36 @@
+name: My-Subworkflow-gh
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+          sudo apt-add-repository https://cli.github.com/packages
+          sudo apt update
+          sudo apt install gh
+
+      - name: Authenticate GitHub CLI
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo $GITHUB_TOKEN | gh auth login --with-token
+
+      - name: Retrieve all repositories
+        run: |
+          gh repo list --limit 100
+          
+      - name: Build and deploy
+        run: |
+          # Add your build and deploy commands here
+          echo "Build and deploy complete"

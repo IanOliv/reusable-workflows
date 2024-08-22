@@ -3,7 +3,7 @@ name: My-Subworkflow
 on:
   push:
     branches:
-      - main
+      - unkown
 
 jobs:
   build:
