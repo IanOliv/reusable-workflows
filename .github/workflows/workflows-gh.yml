@@ -22,8 +22,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh auth login --with-token "${{ secrets.GITHUB_TOKEN }}"
-
+          gh auth login --with-token <<< $GITHUB_TOKEN
+          
       - name: Retrieve all repositories
         run: |
           gh repo list --limit 100
