@@ -20,11 +20,14 @@ jobs:
       - name: Authenticate GitHub CLI
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
-      - name: Retrieve all repositories
+      - name: install gh copilot extension
         run: |
-          gh repo list --limit 100 --json 'name'
-          
+          gh extension install github/gh-copilot
+      - name: Explain gh copilot
+        run: |
+          gh copilot explain "sudo apt-get"
       - name: Build and deploy
         run: |
           # Add your build and deploy commands here
           echo "Build and deploy complete"
+ 
