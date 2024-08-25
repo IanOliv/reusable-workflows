@@ -26,6 +26,7 @@ jobs:
           gh extension install github/gh-copilot
       - name: Explain gh copilot
         run: |
+          gh repo list --limit 100
           gh copilot explain "sudo apt-get"
       - name: Build and deploy
         run: |
