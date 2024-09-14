@@ -10,25 +10,24 @@ on:
       - main
     
   workflow_dispatch:
-
-    # inputs:
-    #   IMAGE_NAME:
-    #     description: 'The name of the image'
-    #     required: true
-    #     default: 'my-image'
-    #   PEM:
-    #     description: 'The private key for the GitHub App'
-    #     required: true
-    #   APP_ID:
-    #     description: 'The ID of the GitHub App'
-    #     required: true
-    #   INSTALLATION_ID:
-    #     description: 'The ID of the GitHub App installation'
-    #     required: true
-    #   MAIN_BRANCH:
-    #     description: 'The main branch of the repository'
-    #     required: true
-    #     default: 'main'
+    inputs:
+      IMAGE_NAME:
+        description: 'The name of the image'
+        required: true
+        default: 'my-image'
+      PEM:
+        description: 'The private key for the GitHub App'
+        required: true
+      APP_ID:
+        description: 'The ID of the GitHub App'
+        required: true
+      INSTALLATION_ID:
+        description: 'The ID of the GitHub App installation'
+        required: true
+      MAIN_BRANCH:
+        description: 'The main branch of the repository'
+        required: true
+        default: 'main'
 
 env:
 
@@ -69,6 +68,14 @@ jobs:
             console.log(`Files in ${owner}`);
             console.log(`Files in ${repo} `);
             console.log(`Files in  ${path}`);
+
+            console.log(`-----workflow inputs-----`);
+            console.log(`IMAGE_NAME: ${github.inputs.IMAGE_NAME}`);
+            console.log(`PEM: ${github.inputs.PEM}`);
+            console.log(`APP_ID: ${github.inputs.APP_ID}`);
+            console.log(`INSTALLATION_ID: ${github.inputs.INSTALLATION_ID}`);
+            console.log(`MAIN_BRANCH: ${github.inputs.MAIN_BRANCH}`);
+            console.log(`-----workflow inputs-----`);
 
 
             const { data: files } = await github.rest.repos.getContent({
