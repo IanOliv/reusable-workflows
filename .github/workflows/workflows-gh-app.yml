@@ -52,6 +52,7 @@ jobs:
         with:
           repository: 'IanOliv/state'
           ref: 'src'
+          token: ${{ secrets.TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
