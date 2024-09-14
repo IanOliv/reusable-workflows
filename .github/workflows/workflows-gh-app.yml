@@ -63,12 +63,12 @@ jobs:
           retry-exempt-status-codes: 400,401
           script: |
             console.log('resto')
-            const resto =github.rest.issues.get({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
-            console.log(resto)
+            # const resto = await github.rest.issues.get({
+            #   issue_number: context.issue.number,
+            #   owner: context.repo.owner,
+            #   repo: context.repo.repo,
+            # })
+            console.log(github, context)
 # uses: actions/github-script@v7
 #   id: my-script
           
