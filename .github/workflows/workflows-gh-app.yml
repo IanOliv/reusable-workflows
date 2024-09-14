@@ -65,6 +65,10 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const path = ''; // Root directory, change this to list files in a specific directory
+            console.log(`Files in ${owner}`);
+            console.log(`Files in ${repo} `);
+            console.log(`Files in  ${path}`);
+
 
             const { data: files } = await github.rest.repos.getContent({
               owner,
