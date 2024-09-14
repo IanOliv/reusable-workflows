@@ -55,42 +55,43 @@ jobs:
           token: ${{ secrets.TOKEN }}
           path: ./state
           
-
-      - name: Set up Python
-        id: setup-python
-        uses: actions/setup-python@v5
+      - uses: actions/github-script@v7
+        id: my-script
         with:
-          python-version: '3.10'
-    
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-dev build-essential
-
-      - name: Install dependencies
-        working-directory: ./state
-        run: |
-          mkdir -p .pip
-          python -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
-          pip install --target=.pip -r requirements.txt
+          result-encoding: string
+          retries: 3
+          retry-exempt-status-codes: 400,401
+          script: |
+            console.log('resto')
+            const resto =github.rest.issues.get({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            })
+            console.log(resto)
+# uses: actions/github-script@v7
+#   id: my-script
           
-      - name: freeze dependencies
-        working-directory: ./state
-        run: |
-          source venv/bin/activate
-          pip freeze
-        
-      - name: execute python script
-        working-directory: ./state
-        run: |
-          source venv/bin/activate
-          export PYTHONPATH=$(pwd)/.pip:$PYTHONPATH
-          python src/main.py
+# const octokit = new Octokit({
+#   auth: 'YOUR-TOKEN'
+# })
+
+# await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+#   owner: 'OWNER',
+#   repo: 'REPO',
+#   workflow_id: 'WORKFLOW_ID',
+#   ref: 'topic-branch',
+#   inputs: {
+#     name: 'Mona the Octocat',
+#     home: 'San Francisco, CA'
+#   },
+#   headers: {
+#     'X-GitHub-Api-Version': '2022-11-28'
+#   }
+# })
 
       - name: list files on the state directory
-        working-directory: ./state
+        # working-directory: ./state
         if: always()
         run: ls -la
 
