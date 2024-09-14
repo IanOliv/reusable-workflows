@@ -45,6 +45,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    runs:
+      using: 'node20'
+
 
     steps:
       - name: Checkout code
@@ -56,6 +59,7 @@ jobs:
           path: ./state
 
       - name: Set up Python
+        id: setup-python
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
@@ -85,7 +89,7 @@ jobs:
           # Add your build and deploy commands here
           echo "Build and deploy complete"
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: ./state 
@@ -102,7 +106,7 @@ jobs:
       #     ref: 'src'
       #     token: ${{ secrets.TOKEN }}
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: ./state 
