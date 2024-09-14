@@ -70,7 +70,7 @@ jobs:
         working-directory: ./state
         run: |
           mkdir -p .pip
-          python -m venv venv
+          # python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
           pip install --target=.pip -r requirements.txt
@@ -78,13 +78,13 @@ jobs:
       - name: freeze dependencies
         working-directory: ./state
         run: |
-          source venv/bin/activate
+          # source venv/bin/activate
           pip freeze
         
       - name: execute python script
         working-directory: ./state
         run: |
-          source venv/bin/activate
+          # source venv/bin/activate
           export PYTHONPATH=$(pwd)/.pip:$PYTHONPATH
           python src/main.py
 
