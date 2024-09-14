@@ -7,7 +7,7 @@ on:
     tags:
       - v0.0.*
   workflow_dispatch:
-    
+
     # inputs:
     #   IMAGE_NAME:
     #     description: 'The name of the image'
@@ -62,11 +62,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-          const { data: installations } = await github.apps.listInstallations();
-          const installation = installations.find(installation => installation.app_id === ${{ env.APP_ID }});
-          console.log(`Installation ID: ${installation.id}`);
-          console.log(`PEM: ${installation.pem}`);
-          console.log(`Main Branch: ${{ env.MAIN_BRANCH }}`);
-          core.setOutput('installation_id', installation.id);
-          core.setOutput('pem', installation.pem);
-          core.setOutput('main_branch', ${{ env.MAIN_BRANCH }});
+            const { data: installations } = await github.apps.listInstallations();
+            const installation = installations.find(installation => installation.app_id === ${{ env.APP_ID }});
+            console.log(`Installation ID: ${installation.id}`);
+            console.log(`PEM: ${installation.pem}`);
+            console.log(`Main Branch: ${{ env.MAIN_BRANCH }}`);
+            core.setOutput('installation_id', installation.id);
+            core.setOutput('pem', installation.pem);
+            core.setOutput('main_branch', ${{ env.MAIN_BRANCH }});
