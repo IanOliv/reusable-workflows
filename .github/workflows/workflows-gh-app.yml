@@ -70,7 +70,8 @@ jobs:
             console.log(`Files in  ${path}`);
 
             console.log(`-----workflow inputs-----`);
-            console.log(github);
+            console.log(JSON.stringify(github, null, 2));
+            console.log(JSON.stringify(context, null, 2));
             console.log(`-----workflow inputs-----`);
 
 
