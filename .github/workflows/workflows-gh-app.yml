@@ -60,7 +60,7 @@ jobs:
         id: installation
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           script: |
             const { data: installations } = await github.apps.listInstallations();
             const installation = installations.find(installation => installation.app_id === ${{ env.APP_ID }});
