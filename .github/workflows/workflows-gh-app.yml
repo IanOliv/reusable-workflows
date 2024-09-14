@@ -69,7 +69,7 @@ jobs:
           python --version
 
       - name: Build and deploy
-        working-directory: /tmp/state
+        working-directory: ./state
         run: |
           # Add your build and deploy commands here
           ls -la
