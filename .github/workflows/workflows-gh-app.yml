@@ -70,7 +70,7 @@ jobs:
             console.log(`Files in  ${path}`);
 
             console.log(`-----workflow inputs-----`);
-            console.log(`IMAGE_NAME: ${github}`);
+            console.log(github);
             console.log(`-----workflow inputs-----`);
 
 
