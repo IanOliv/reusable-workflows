@@ -74,13 +74,16 @@ jobs:
           pip install -r requirements.txt
           
       - name: freeze dependencies
-        working-directory: ./state/src
+        working-directory: ./state
         run: |
+          source venv/bin/activate
           pip freeze
         
       - name: execute python script
         working-directory: ./state/src
-        run: python main.py
+        run: |
+          source venv/bin/activate
+          python main.py
 
       - name: list files on the state directory
         working-directory: ./state
