@@ -66,13 +66,11 @@ jobs:
           retries: 3
           retry-exempt-status-codes: 400,401
           script: |
-            const { createAppAuth } = require('@octokit/auth-app');
-            const { Octokit } = require('@octokit/rest');
 
             console.log(`-----process env-----`);
             console.log(process.env);
             console.log(`-----process env-----`);
-            
+
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const path = ''; // Root directory, change this to list files in a specific directory
