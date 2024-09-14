@@ -1,5 +1,5 @@
 name: GH-APP-WORKFLOWs
-
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 
 
 on:
@@ -84,7 +84,11 @@ jobs:
           ls -la
           # Add your build and deploy commands here
           echo "Build and deploy complete"
-
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: ./state 
 
 
   execute:
@@ -97,7 +101,11 @@ jobs:
       #     repository: 'IanOliv/state'
       #     ref: 'src'
       #     token: ${{ secrets.TOKEN }}
-      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: ./state 
       - name: list files on the state directory
         working-directory: ./state
         if: always()
