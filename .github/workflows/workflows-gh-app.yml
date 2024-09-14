@@ -1,0 +1,72 @@
+name: GH-APP-WORKFLOWs
+
+
+
+on:
+  push:
+    tags:
+      - v0.0.*
+  workflow_dispatch:
+    
+    # inputs:
+    #   IMAGE_NAME:
+    #     description: 'The name of the image'
+    #     required: true
+    #     default: 'my-image'
+    #   PEM:
+    #     description: 'The private key for the GitHub App'
+    #     required: true
+    #   APP_ID:
+    #     description: 'The ID of the GitHub App'
+    #     required: true
+    #   INSTALLATION_ID:
+    #     description: 'The ID of the GitHub App installation'
+    #     required: true
+    #   MAIN_BRANCH:
+    #     description: 'The main branch of the repository'
+    #     required: true
+    #     default: 'main'
+
+env:
+
+  IMAGE_NAME: ${{ github.repository }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PEM:
+  APP_ID: 938929
+  INSTALLATION_ID: 
+  MAIN_BRANCH: main
+
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
+      - name: Build and deploy
+        run: |
+          # Add your build and deploy commands here
+          echo "Build and deploy complete"
+      - name: Install GitHub CLI
+        run: |
+          # Add your build and deploy commands here
+          echo "Build and deploy complete"
+      - name: Get GitHub App Installation
+        id: installation
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+          const { data: installations } = await github.apps.listInstallations();
+          const installation = installations.find(installation => installation.app_id === ${{ env.APP_ID }});
+          console.log(`Installation ID: ${installation.id}`);
+          console.log(`PEM: ${installation.pem}`);
+          console.log(`Main Branch: ${{ env.MAIN_BRANCH }}`);
+          core.setOutput('installation_id', installation.id);
+          core.setOutput('pem', installation.pem);
+          core.setOutput('main_branch', ${{ env.MAIN_BRANCH }});
