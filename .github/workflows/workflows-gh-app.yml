@@ -57,6 +57,12 @@ jobs:
           ref: 'src'
           token: ${{ secrets.TOKEN }}
           path: ./state
+      - name: Checkout code
+        uses: actions/checkout@v4  # Updated to v3
+        with:
+          token: ${{ secrets.TOKEN }}
+          
+          
       - name: List repository files
         uses: ./.github/actions/gh-app-script
         with:
