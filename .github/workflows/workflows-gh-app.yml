@@ -71,10 +71,6 @@ jobs:
 
             console.log(`-----workflow inputs-----`);
             console.log(`IMAGE_NAME: ${github}`);
-            # console.log(`PEM: ${github.inputs.PEM}`);
-            # console.log(`APP_ID: ${github.inputs.APP_ID}`);
-            # console.log(`INSTALLATION_ID: ${github.inputs.INSTALLATION_ID}`);
-            # console.log(`MAIN_BRANCH: ${github.inputs.MAIN_BRANCH}`);
             console.log(`-----workflow inputs-----`);
 
 
