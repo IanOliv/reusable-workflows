@@ -69,9 +69,10 @@ jobs:
       - name: Install dependencies
         working-directory: ./state
         run: |
+          mkdir -p .pip
           python -m venv venv
           source venv/bin/activate
-          pip install -r requirements.txt
+          pip install --target=.pip -r requirements.txt
           
       - name: freeze dependencies
         working-directory: ./state
@@ -83,6 +84,7 @@ jobs:
         working-directory: ./state
         run: |
           source venv/bin/activate
+          export PYTHONPATH=$(pwd)/.pip:$PYTHONPATH
           python src/main.py
 
       - name: list files on the state directory
