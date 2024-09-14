@@ -53,6 +53,7 @@ jobs:
           repository: 'IanOliv/state'
           ref: 'src'
           token: ${{ secrets.TOKEN }}
+          path: '/tmp/state'
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -60,6 +61,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
+        working-directory: /tmp/state
         run: |
           python -m venv venv
           source venv/bin/activate
@@ -67,8 +69,10 @@ jobs:
           python --version
 
       - name: Build and deploy
+        working-directory: /tmp/state
         run: |
           # Add your build and deploy commands here
+          ls -la
           echo "Build and deploy complete"
       - name: Install GitHub CLI
         run: |
