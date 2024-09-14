@@ -76,6 +76,7 @@ jobs:
           echo "Build and deploy complete"
       - name: Install GitHub CLI
         run: |
+          ls -la
           # Add your build and deploy commands here
           echo "Build and deploy complete"
       # - name: Get GitHub App Installation
