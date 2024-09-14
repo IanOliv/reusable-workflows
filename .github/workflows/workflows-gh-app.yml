@@ -72,15 +72,17 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-          python --version
-          python src/main.py
-
-      - name: Build and deploy
+          
+          
+      - name: execute python script
+        working-directory: ./state/src
+        run: python main.py
+        
+      - name: list files on the state directory
         working-directory: ./state
         if: always()
-        run: |
-          ls -la
-          echo "Build and deploy complete"
+        run: ls -la
+
       - name: end of build
         run: |
           # Add your build and deploy commands here
