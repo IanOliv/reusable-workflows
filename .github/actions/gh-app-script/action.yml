@@ -1,0 +1,18 @@
+name: "Custom GitHub Script"
+description: "A custom action to run a GitHub script with @octokit/auth-app"
+runs:
+  using: "node20"
+  main: "index.js"
+inputs:
+  github-token:
+    description: "GitHub Token"
+    required: true
+  app-id:
+    description: "GitHub App ID"
+    required: true
+  installation-id:
+    description: "GitHub App Installation ID"
+    required: true
+  private-key:
+    description: "GitHub App Private Key"
+    required: true
