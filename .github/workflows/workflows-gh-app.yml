@@ -115,3 +115,14 @@ jobs:
           # Add your build and deploy commands here
           ls -la
           echo "list files on the state directory"    
+      - name: check python version
+        working-directory: ./state
+        run: |
+          # python -m venv venv
+          # source venv/bin/activate
+          # pip install -r requirements.txt
+          python --version
+          python -m venv venv
+          pip freeze
+
+        
