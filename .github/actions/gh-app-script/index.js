@@ -16,12 +16,14 @@ async function run() {
 
 
     const auth = createAppAuth({
-      appId,
-      privateKey,
-      installationId
+      appId : process.env.GH_APP_ID,
+      privateKey : process.env.GH_APP_PRIVATE_KEY,
+      clientId: process.env.GH_APP_CLIENT_ID,
+      clientSecret: process.env.GH_APP_CLIENT_SECRET
     });
     console.log('Authenticating as installation');
     const installationAuthentication = await auth({ type: 'installation' });
+
 
     const octokit = new Octokit({
       auth: installationAuthentication.token
