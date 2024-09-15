@@ -9,7 +9,8 @@ async function run() {
     const appId = core.getInput('app-id');
     const installationId = core.getInput('installation-id');
     const privateKey = core.getInput('private-key');
-
+    const pp = privateKey.replace(/\\n/g, '\n');
+    console.log(pp)
     console.log(`App ID: ${appId}`);
     console.log(`Installation ID: ${installationId}`);
     console.log(`Private Key: ${privateKey}`);
