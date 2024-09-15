@@ -61,7 +61,7 @@ env:
   repo: ${{ inputs.repo || 'state' }}
   path: ${{ inputs.path || './state.json' }}
   branch: ${{ inputs.branch  || 'main' }}
-  content: ${{ inputs.content || '\{ \}' }}
+  content: ${{ inputs.content || '{ }' }}
   message: ${{ inputs.message || ' update state' }}
 
 
