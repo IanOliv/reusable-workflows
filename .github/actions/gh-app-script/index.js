@@ -49,6 +49,8 @@ async function run() {
     // console.log('File created', file);
 
   } catch (error) {
+    console.error(error);
+    console.table(error);
     core.setFailed(error.message);
   }
 }
