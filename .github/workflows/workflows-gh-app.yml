@@ -1,5 +1,5 @@
 name: GH-APP-WORKFLOWs
-run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: Deploy to ${{ github.context.eventName }} by @${{ github.actor }}
 
 
 on:
@@ -59,10 +59,10 @@ env:
   GH_APP_CLIENT_ID: ${{ secrets.GH_APP_CLIENT_ID }}
   GH_APP_CLIENT_SECRET: ${{ secrets.GH_APP_CLIENT_SECRET }}
   repo: ${{ inputs.repo || 'state' }}
-  path: ${{ inputs.path || 'state.json' }}
+  path: ${{ inputs.path || 'state1.json' }}
   branch: ${{ inputs.branch  || 'main' }}
   content: ${{ inputs.content || '{ }' }}
-  message: ${{ inputs.message || ' update state' }}
+  message: ${{ inputs.message || github.context.payload.head_commit.message }}
 
 
 
@@ -93,7 +93,13 @@ jobs:
           message: ${{ env.message }}
           branch: ${{ env.branch }}
           content: ${{ env.content }}
-
+  logs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+         # Updated to v3
+        run: echo "${{ github.context.eventName }} by @${{ github.actor }}"
+         
 # uses: actions/github-script@v7
 #   id: my-script
           
