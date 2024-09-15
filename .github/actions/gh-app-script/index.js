@@ -33,8 +33,10 @@ async function run() {
 
     // const branches = await getBranches({ owner, repo, octokit });
     // console.log('Branches', branches);
-    const file = await createFile({ owner, repo, octokit,
-       path: path_file, message, content,branch });
+     const branchs = await createBranch({ owner, repo, octokit, branch });
+     console.log('Branch created', branchs);
+    // const file = await createFile({ owner, repo, octokit,
+    //    path: path_file, message, content,branch });
     // console.log('File created', file);
 
   } catch (error) {
@@ -76,6 +78,32 @@ async function getBranches(params) {
 
 
 }
+
+async function createBranch(params) {
+  const { owner, repo, octokit , branch, } = params;
+  const { data: branches } = await octokit.rest.git.createRef({
+    owner,
+    repo,
+    ref: 'refs/heads/' + branch,
+    sha: 'main'
+  });
+  return branches;
+  
+}
+
+async function deleteBranch(params) {
+
+  const { owner, repo, octokit ,branch} = params;
+  const { data: branches } = await octokit.rest.git.deleteRef({
+    owner,
+    repo,
+    ref: 'heads/'+branch
+  });
+  return branches;
+
+}
+
+
 async function getFiles(params) {
   const { owner, repo, octokit } = params;
   const { data: files } = await octokit.rest.repos.getContent({
