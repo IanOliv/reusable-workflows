@@ -22,7 +22,7 @@ async function run() {
       clientSecret: process.env.GH_APP_CLIENT_SECRET
     });
     console.log('Authenticating as installation');
-    const installationAuthentication = await auth({ type: 'installation' });
+    const installationAuthentication = await auth({ type: 'app' });
 
 
     const octokit = new Octokit({
