@@ -21,6 +21,15 @@ async function run() {
     // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
     const content = core.getInput('content');
 
+
+    console.log('Owner', owner);
+    console.log('Repo', repo);
+    console.log('Path', path);
+    console.log('Path file', path_file);
+    console.log('Branch', branch);
+    console.log('Message', message);
+    console.log('Content', content);
+
     // const { data: files } = await octokit.rest.repos.getContent({
     //   owner,
     //   repo,
