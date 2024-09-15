@@ -15,7 +15,9 @@ async function run() {
     // const repo = github.context.repo.repo;
     const repo = 'state';
     const path = ''; // Root directory, change this to list files in a specific directory
-
+    const path_file = 'xxxx.txt';
+    const message = 'feat:  commit';
+    const content = Buffer.from('Hello Worldddddddd!').toString('base64');
 
     const { data: files } = await octokit.rest.repos.getContent({
       owner,
@@ -29,7 +31,7 @@ async function run() {
 
     const branches = await getBranches({ owner, repo, octokit });
     console.log('Branches', branches);
-    const file = await createFile({ owner, repo, octokit });
+    const file = await createFile({ owner, repo, octokit, path: path_file, message, content });
     console.log('File created', file);
 
   } catch (error) {
@@ -81,13 +83,15 @@ async function getFiles(params) {
 }
 
 async function createFile(params) {
-  const { owner, repo, octokit } = params;
+  const { owner, repo, 
+    path, message, content,
+    octokit } = params;
   const { data: files } = await octokit.rest.repos.createOrUpdateFileContents({
     owner,
     repo,
-    path: 'dddff.txt',
-    message: 'Initial commit',
-    content: Buffer.from('Hello World!').toString('base64')
+    path,
+    message,
+    content
   });
   return files;
 
