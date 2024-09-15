@@ -81,11 +81,18 @@ async function getBranches(params) {
 
 async function createBranch(params) {
   const { owner, repo, octokit , branch, } = params;
+
+  const sha = await octokit.rest.git.getRef({
+    owner,
+    repo,
+    ref: 'heads/main'
+  });
+
   const { data: branches } = await octokit.rest.git.createRef({
     owner,
     repo,
     ref: 'refs/heads/' + branch,
-    sha: 'main'
+    sha: sha.object.sha
   });
   return branches;
   
