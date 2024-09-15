@@ -22,32 +22,35 @@ async function run() {
       clientId: process.env.GH_APP_CLIENT_ID,
       clientSecret: process.env.GH_APP_CLIENT_SECRET
     });
+
     console.log('Authenticating as installation');
-    const installationAuthentication = await auth({ type: 'app' });
+    const appAuthentication = await auth({ type: 'app' });
+    const installationAuthentication = await auth({ type: 'installation', installationId: installationId });
     console.log(installationAuthentication);
+    console.log(appAuthentication);
     console.log('Authenticated as installation');
 
-    const octokit = new Octokit({
-      auth: installationAuthentication.token
-    });
+    // const octokit = new Octokit({
+    //   auth: installationAuthentication.token
+    // });
 
-    const owner = github.context.repo.owner;
-    const repo = github.context.repo.repo;
-    const path = ''; // Root directory, change this to list files in a specific directory
+    // const owner = github.context.repo.owner;
+    // const repo = github.context.repo.repo;
+    // const path = ''; // Root directory, change this to list files in a specific directory
 
-    console.log(`Files in ${owner}`);
-    console.log(`Files in ${repo}`);
-    console.log(`Files in ${path}`);
+    // console.log(`Files in ${owner}`);
+    // console.log(`Files in ${repo}`);
+    // console.log(`Files in ${path}`);
 
-    const { data: files } = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path
-    });
+    // const { data: files } = await octokit.rest.repos.getContent({
+    //   owner,
+    //   repo,
+    //   path
+    // });
 
-    for (const file of files) {
-      console.log(`- ${file.name}`);
-    }
+    // for (const file of files) {
+    //   console.log(`- ${file.name}`);
+    // }
   } catch (error) {
     core.setFailed(error.message);
   }
