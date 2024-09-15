@@ -15,9 +15,10 @@ async function run() {
     // const repo = github.context.repo.repo;
     const repo = 'state';
     const path = ''; // Root directory, change this to list files in a specific directory
-    const path_file = 'xxxx.txt';
-    const message = 'feat:  commit';
-    const content = Buffer.from('Hello Worldddddddd!').toString('base64');
+    const path_file = 'xxxdddddx.txt';
+    const message = 'feat:  commitddd';
+    // const content = Buffer.from('Hello Worldddddddd!').toString('base64');
+    const content = 'Hello Worldddddxxxxxxddd!';
 
     const { data: files } = await octokit.rest.repos.getContent({
       owner,
