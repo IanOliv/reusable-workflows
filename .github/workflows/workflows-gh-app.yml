@@ -60,7 +60,7 @@ env:
   GH_APP_CLIENT_SECRET: ${{ secrets.GH_APP_CLIENT_SECRET }}
   repo: ${{ inputs.repo || 'state' }}
   path: ${{ inputs.path || './state.json' }}
-  message:  ${{ inputs.message  || 'chore: update statDe' }}
+  messageu:  ${{ inputs.message  || 'chore: update statDe' }}
   branch: ${{ inputs.branch  || 'main' }}
   content: ${{ inputs.content || '{ \"state\": \"updatedx\"}' }}
 
@@ -90,7 +90,7 @@ jobs:
         with:
           repo: ${{ env.repo }}
           path: ${{ env.path }}
-          message: ${{ env.message }}
+          message: ${{ env.messageu }}
           branch: ${{ env.branch }}
           content: ${{ env.content }}
 
