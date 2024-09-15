@@ -17,7 +17,7 @@ async function run() {
     const path = ''; // Root directory, change this to list files in a specific directory
     const path_file = 'xxxdddddx.txt';
     const message = 'feat:  commitddd';
-    // const content = Buffer.from('Hello Worldddddddd!').toString('base64');
+    const content = Buffer.from('Hello Worldddddddd!').toString('base64');
     const content = 'Hello Worldddddxxxxxxddd!';
 
     const { data: files } = await octokit.rest.repos.getContent({
@@ -87,12 +87,13 @@ async function createFile(params) {
   const { owner, repo, 
     path, message, content,
     octokit } = params;
+  const contentRaw = Buffer.from(content).toString('base64')
   const { data: files } = await octokit.rest.repos.createOrUpdateFileContents({
     owner,
     repo,
     path,
     message,
-    content
+    content: contentRaw
   });
   return files;
 
@@ -100,6 +101,7 @@ async function createFile(params) {
 
 async function updateFile(params) {
   const { owner, repo, octokit } = params;
+  // const contetRaw = Buffer.from('Hello Worldddddddd!').toString('base64')
   const { data: files } = await octokit.rest.repos.createOrUpdateFileContents({
     owner,
     repo,
