@@ -67,8 +67,9 @@ jobs:
         uses: ./.github/actions/gh-app-script
         with:
           repo: 'state'
-          path: 'from-action.json'
+          path: 'from-action-1.json'
           message: 'chore: update state'
+          branch: 'main'
           content: |
             {
               "state": "updated"

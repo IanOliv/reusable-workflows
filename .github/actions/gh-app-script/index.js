@@ -16,24 +16,26 @@ async function run() {
     const repo = core.getInput('repo');
     const path =  ''; // Root directory, change this to list files in a specific directory
     const path_file = core.getInput('path');
+    const branch = core.getInput('branch');
     const message = core.getInput('message');
     // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
     const content = core.getInput('content');
 
-    const { data: files } = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path
-    });
+    // const { data: files } = await octokit.rest.repos.getContent({
+    //   owner,
+    //   repo,
+    //   path
+    // });
 
-    for (const file of files) {
-      console.log(`- ${ file.name }`);
-    }
+    // for (const file of files) {
+    //   console.log(`- ${ file.name }`);
+    // }
 
-    const branches = await getBranches({ owner, repo, octokit });
-    console.log('Branches', branches);
-    const file = await createFile({ owner, repo, octokit, path: path_file, message, content });
-    console.log('File created', file);
+    // const branches = await getBranches({ owner, repo, octokit });
+    // console.log('Branches', branches);
+    const file = await createFile({ owner, repo, octokit,
+       path: path_file, message, content,branch });
+    // console.log('File created', file);
 
   } catch (error) {
     core.setFailed(error.message);
