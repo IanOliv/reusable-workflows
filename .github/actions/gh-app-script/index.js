@@ -6,26 +6,9 @@ const fs = require('fs');
 
 async function run() {
   try {
-    const appId = core.getInput('app-id');
-    const installationId = core.getInput('installation-id');
-    const privateKey = core.getInput('private-key');
-    const pp = privateKey.replace(/\\n/g, '\n');
-    // console.log(pp)
-    // console.log(`App ID: ${appId}`);
-    // console.log(`Installation ID: ${installationId}`);
-    // console.log(`Private Key: ${privateKey}`);
-
-
-    const auth = createAppAuth({
-      appId : process.env.GH_APP_ID,
-      privateKey : privateKey,
-      clientId: process.env.GH_APP_CLIENT_ID,
-      clientSecret: process.env.GH_APP_CLIENT_SECRET
-    });
-
-    console.log('Authenticating as installation');
-    const appAuthentication = await auth({ type: 'app' });
-    const installationAuthentication = await auth({ type: 'installation', installationId: installationId });
+    const {appAuthentication,installationAuthentication}=getAuth();
+    // const appAuthentication = await auth({ type: 'app' });
+    // const installationAuthentication = await auth({ type: 'installation', installationId: installationId });
     console.log(installationAuthentication);
     console.log(appAuthentication);
     console.log('Authenticated as installation');
@@ -51,9 +34,69 @@ async function run() {
     for (const file of files) {
       console.log(`- ${file.name}`);
     }
+
+  
+
+
   } catch (error) {
     core.setFailed(error.message);
   }
 }
 
+
+
+
+async function getAuth() {
+    const {GH_APP_CLIENT_ID, GH_APP_CLIENT_SECRET, GH_APP_ID,GH_APP_INSTALLATION_ID} = process.env;
+
+
+    const auth = createAppAuth({
+      appId :GH_APP_ID,
+      privateKey : privateKey,
+      clientId:GH_APP_CLIENT_ID,
+      clientSecret:GH_APP_CLIENT_SECRET
+    });
+
+
+    const appAuthentication = await auth({ type: 'app' });
+    const installationAuthentication = await auth({ type: 'installation', installationId: GH_APP_INSTALLATION_ID });
+
+    return {appAuthentication, installationAuthentication};
+}
+async function getBranches(params) {
+  
+  
+}
+async function getFiles(params) {
+    
+}
+
+async function createFile(params) {
+    
+}
+
+async function updateFile(params) {
+
+}
+
+async function deleteFile(params) {
+      
+}
+
+async function getCommits(params) {
+    
+}
+
+
+
+async function getRepo(params) {
+    
+}
+
+
+
+
+
 run();
+
+
