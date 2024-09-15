@@ -8,21 +8,21 @@ async function run() {
   try {
     const { appAuthentication, installationAuthentication, octokit } = await getAuth();
     
-    console.log(JSON.stringify(github));
-    console.log(JSON.stringify(core));
+    // console.log(JSON.stringify(github));
+    // console.log(JSON.stringify(core));
 
     const {  owner , } = github.context.repo;
     // const repo = github.context.repo.repo;
     const repo = 'state';
     const path = ''; // Root directory, change this to list files in a specific directory
-    const path_file = 'xxxddddddddx.txt';
-    const message = 'feat:  commitddd';
+    const path_file = 'ddsd/xxxddddddddx.txt';
+    const message = 'feat:  commitdddff';
     // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
     const content = 'Hello Worldddddxxxxxxddd!';
 
     const { data: files } = await octokit.rest.repos.getContent({
       owner,
-      repo: 'state',
+      repo,
       path
     });
 
