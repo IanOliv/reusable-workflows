@@ -134,6 +134,7 @@ async function createFile(params) {
     path, message, content,
     octokit } = params;
   const contentRaw = Buffer.from(content).toString('base64')
+  console.log('Content raw', contentRaw);
   const { data: files } = await octokit.rest.repos.createOrUpdateFileContents({
     owner,
     repo,
@@ -141,6 +142,7 @@ async function createFile(params) {
     message,
     content: contentRaw
   });
+  console.log('Files', files);
   return files;
 
 }
