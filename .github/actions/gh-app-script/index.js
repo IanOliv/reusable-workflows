@@ -42,15 +42,15 @@ async function run() {
     console.log(`Files in ${repo}`);
     console.log(`Files in ${path}`);
 
-    // const { data: files } = await octokit.rest.repos.getContent({
-    //   owner,
-    //   repo,
-    //   path
-    // });
+    const { data: files } = await octokit.rest.repos.getContent({
+      owner,
+      repo,
+      path
+    });
 
-    // for (const file of files) {
-    //   console.log(`- ${file.name}`);
-    // }
+    for (const file of files) {
+      console.log(`- ${file.name}`);
+    }
   } catch (error) {
     core.setFailed(error.message);
   }
