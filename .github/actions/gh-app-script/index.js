@@ -6,7 +6,7 @@ const fs = require('fs');
 
 async function run() {
   try {
-    const {appAuthentication,installationAuthentication}=getAuth();
+    const {appAuthentication,installationAuthentication}= await getAuth();
     // const appAuthentication = await auth({ type: 'app' });
     // const installationAuthentication = await auth({ type: 'installation', installationId: installationId });
     console.log(installationAuthentication);
