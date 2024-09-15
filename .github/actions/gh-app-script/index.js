@@ -13,14 +13,14 @@ async function run() {
     console.log(`App ID: ${appId}`);
     console.log(`Installation ID: ${installationId}`);
     console.log(`Private Key: ${privateKey}`);
-    
+
 
     const auth = createAppAuth({
       appId,
       privateKey,
       installationId
     });
-
+    console.log('Authenticating as installation');
     const installationAuthentication = await auth({ type: 'installation' });
 
     const octokit = new Octokit({
