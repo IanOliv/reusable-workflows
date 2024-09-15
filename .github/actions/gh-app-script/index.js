@@ -30,17 +30,17 @@ async function run() {
     console.log(appAuthentication);
     console.log('Authenticated as installation');
 
-    // const octokit = new Octokit({
-    //   auth: installationAuthentication.token
-    // });
+    const octokit = new Octokit({
+      auth: installationAuthentication.token
+    });
 
-    // const owner = github.context.repo.owner;
-    // const repo = github.context.repo.repo;
-    // const path = ''; // Root directory, change this to list files in a specific directory
+    const owner = github.context.repo.owner;
+    const repo = github.context.repo.repo;
+    const path = ''; // Root directory, change this to list files in a specific directory
 
-    // console.log(`Files in ${owner}`);
-    // console.log(`Files in ${repo}`);
-    // console.log(`Files in ${path}`);
+    console.log(`Files in ${owner}`);
+    console.log(`Files in ${repo}`);
+    console.log(`Files in ${path}`);
 
     // const { data: files } = await octokit.rest.repos.getContent({
     //   owner,
