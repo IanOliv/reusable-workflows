@@ -4,15 +4,36 @@ runs:
   using: "node20"
   main: "index.js"
 inputs:
-  github-token:
-    description: "GitHub Token"
+  # github-token:
+  #   description: "GitHub Token"
+  #   required: true
+  # app-id:
+  #   description: "GitHub App ID"
+  #   required: true
+  # installation-id:
+  #   description: "GitHub App Installation ID"
+  #   required: true
+  # private-key:
+  #   description: "GitHub App Private Key"
+  #   required: true
+  repo:
+    description: "Repository"
     required: true
-  app-id:
-    description: "GitHub App ID"
+    default: 'state'
+  branch:
+    description: "Branch"
     required: true
-  installation-id:
-    description: "GitHub App Installation ID"
+    default: 'main'
+  path:
+    description: "Path"
     required: true
-  private-key:
-    description: "GitHub App Private Key"
+    default: './state.json'
+  message:
+    description: "Message"
     required: true
+    default: 'chore: update state'
+  content:
+    description: "Content"
+    required: true
+    default: 'state'
+  

@@ -7,18 +7,18 @@ const fs = require('fs');
 async function run() {
   try {
     const { appAuthentication, installationAuthentication, octokit } = await getAuth();
-    
+    // const branch = core.getInput('private-key');
     // console.log(JSON.stringify(github));
     // console.log(JSON.stringify(core));
 
     const {  owner , } = github.context.repo;
     // const repo = github.context.repo.repo;
-    const repo = 'state';
-    const path = ''; // Root directory, change this to list files in a specific directory
-    const path_file = 'ddsd/xxxddddddddx.txt';
-    const message = 'feat:  commitdddff';
+    const repo = core.getInput('repo');
+    const path =  ''; // Root directory, change this to list files in a specific directory
+    const path_file = core.getInput('path');
+    const message = core.getInput('message');
     // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
-    const content = 'Hello Worldddddxxxxxxddd!';
+    const content = core.getInput('content');
 
     const { data: files } = await octokit.rest.repos.getContent({
       owner,
