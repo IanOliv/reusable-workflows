@@ -59,7 +59,7 @@ env:
   GH_APP_CLIENT_ID: ${{ secrets.GH_APP_CLIENT_ID }}
   GH_APP_CLIENT_SECRET: ${{ secrets.GH_APP_CLIENT_SECRET }}
   repo: ${{ inputs.repo || 'state' }}
-  path: ${{ inputs.path || './state.json' }}
+  path: ${{ inputs.path || 'state.json' }}
   branch: ${{ inputs.branch  || 'main' }}
   content: ${{ inputs.content || '{ }' }}
   message: ${{ inputs.message || ' update state' }}
