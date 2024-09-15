@@ -28,6 +28,42 @@ on:
         description: 'The main branch of the repository'
         required: true
         default: 'main'
+      repo: 
+        description: 'The main branch of the repository'
+        required: true
+        default: 'state'
+      path: 
+        description: 'The main branch of the repository'
+        required: true
+        default: 'from-action-1.json'
+      message: 
+        description: 'The main branch of the repository'
+        required: true
+        default: 'chore: update state'
+      branch: 
+        description: 'The main branch of the repository'
+        required: true
+        default: 'main-2'
+      content: 
+        description: 'The main branch of the repository'
+        required: true
+        default: |
+          {
+            "state": "updatedx"
+          }
+
+      event_type:
+        description: 'The type of event to trigger'
+        required: true
+        default: 'notification'
+        type: choice
+        options:
+        - notification
+        - createFile
+        - deleteFile
+        - updateFile
+        - createBranch
+
 
 env:
   IMAGE_NAME: ${{ github.repository }}
@@ -66,14 +102,11 @@ jobs:
       - name: List repository files
         uses: ./.github/actions/gh-app-script
         with:
-          repo: 'state'
-          path: 'from-action-1.json'
-          message: 'chore: update state'
-          branch: 'main-1'
-          content: |
-            {
-              "state": "updated"
-            }
+          repo: ${{ github.inputs.repo }}
+          path: ${{ github.inputs.path }}
+          message: ${{ github.inputs.message }}
+          branch: ${{ github.inputs.branch }}
+          content: ${{ github.inputs.content }}
 
 # uses: actions/github-script@v7
 #   id: my-script

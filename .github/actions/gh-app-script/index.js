@@ -33,10 +33,10 @@ async function run() {
 
     // const branches = await getBranches({ owner, repo, octokit });
     // console.log('Branches', branches);
-     const branchs = await createBranch({ owner, repo, octokit, branch });
-     console.log('Branch created', branchs);
-    // const file = await createFile({ owner, repo, octokit,
-    //    path: path_file, message, content,branch });
+    //  const branchs = await createBranch({ owner, repo, octokit, branch });
+    //  console.log('Branch created', branchs);
+    const file = await createFile({ owner, repo, octokit,
+       path: path_file, message, content,branch });
     // console.log('File created', file);
 
   } catch (error) {
