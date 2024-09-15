@@ -62,7 +62,7 @@ env:
   path: ${{ inputs.path || 'state1.json' }}
   branch: ${{ inputs.branch  || 'main' }}
   content: ${{ inputs.content || '{ }' }}
-  message: ${{ inputs.message || github.context.payload.head_commit.message }}
+  message: ${{ inputs.message || 'chore update state' }}
 
 
 
@@ -90,15 +90,15 @@ jobs:
         with:
           repo: ${{ env.repo }}
           path: ${{ env.path }}
-          message: ${{ env.message }}
+          message: ${{ env.message || github.co.inputs.message }}
           branch: ${{ env.branch }}
-          content: ${{ env.content }}
+          content: ${{ env.content  }}
   logs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
          # Updated to v3
-        run: echo "${{ github.context.eventName }} by @${{ github.actor }}"
+        run: echo "${GITHUB_EVENT_NAME} by @${GITHUB_ACTOR}"
          
 # uses: actions/github-script@v7
 #   id: my-script
