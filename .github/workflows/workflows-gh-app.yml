@@ -58,14 +58,11 @@ env:
   GH_APP_PRIVATE_KEY_PATH: ${{ secrets.GH_APP_PRIVATE_KEY_PATH }}
   GH_APP_CLIENT_ID: ${{ secrets.GH_APP_CLIENT_ID }}
   GH_APP_CLIENT_SECRET: ${{ secrets.GH_APP_CLIENT_SECRET }}
-  repo: ${{ inputs.repo }}
-  path: ${{ inputs.path }}
-  message: ${{ inputs.message }}
-  branch: ${{ inputs.branch }}
-  content: ${{ inputs.content }}
-  
-
-
+  repo: ${{ inputs.repo || 'state' }}
+  path: ${{ inputs.path || './state.json' }}
+  message: ${{ inputs.message  || 'chore: update statDe' }}
+  branch: ${{ inputs.branch  || 'main' }}
+  content: ${{ inputs.content || '{ "state": "updatedx"}' }}
 
 
 
