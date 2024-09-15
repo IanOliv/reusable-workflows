@@ -7,8 +7,11 @@ const fs = require('fs');
 async function run() {
   try {
     const { appAuthentication, installationAuthentication, octokit } = await getAuth();
+    
+    console.log(JSON.stringify(github));
+    console.log(JSON.stringify(core));
 
-    const owner = github.context.repo.owner;
+    const {  owner , } = github.context.repo;
     // const repo = github.context.repo.repo;
     const repo = 'state';
     const path = ''; // Root directory, change this to list files in a specific directory
