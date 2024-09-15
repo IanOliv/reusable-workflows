@@ -47,12 +47,14 @@ async function run() {
 
 
 async function getAuth() {
-    const {GH_APP_CLIENT_ID, GH_APP_CLIENT_SECRET, GH_APP_ID,GH_APP_INSTALLATION_ID} = process.env;
+    const {GH_APP_CLIENT_ID, 
+          GH_APP_CLIENT_SECRET, GH_APP_PRIVATE_KEY,
+          GH_APP_ID,GH_APP_INSTALLATION_ID} = process.env;
 
 
     const auth = createAppAuth({
       appId :GH_APP_ID,
-      privateKey : privateKey,
+      privateKey : GH_APP_PRIVATE_KEY,
       clientId:GH_APP_CLIENT_ID,
       clientSecret:GH_APP_CLIENT_SECRET
     });
