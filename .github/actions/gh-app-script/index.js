@@ -23,7 +23,8 @@ async function run() {
     });
     console.log('Authenticating as installation');
     const installationAuthentication = await auth({ type: 'app' });
-
+    console.log(installationAuthentication);
+    console.log('Authenticated as installation');
 
     const octokit = new Octokit({
       auth: installationAuthentication.token
