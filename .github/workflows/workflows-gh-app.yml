@@ -11,23 +11,6 @@ on:
     
   workflow_dispatch:
     inputs:
-      IMAGE_NAME:
-        description: 'The name of the image'
-        required: true
-        default: 'my-image'
-      PEM:
-        description: 'The private key for the GitHub App'
-        required: true
-      APP_ID:
-        description: 'The ID of the GitHub App'
-        required: true
-      INSTALLATION_ID:
-        description: 'The ID of the GitHub App installation'
-        required: true
-      MAIN_BRANCH:
-        description: 'The main branch of the repository'
-        required: true
-        default: 'main'
       repo: 
         description: 'The main branch of the repository'
         required: true
