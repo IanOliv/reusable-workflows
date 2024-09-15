@@ -29,8 +29,8 @@ async function run() {
 
     const branches = await getBranches({ owner, repo, octokit });
     console.log('Branches', branches);
-
-
+    const file = await createFile({ owner, repo, octokit });
+    console.log('File created', file);
 
   } catch (error) {
     core.setFailed(error.message);
