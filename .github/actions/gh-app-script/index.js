@@ -10,15 +10,15 @@ async function run() {
     const installationId = core.getInput('installation-id');
     const privateKey = core.getInput('private-key');
     const pp = privateKey.replace(/\\n/g, '\n');
-    console.log(pp)
-    console.log(`App ID: ${appId}`);
-    console.log(`Installation ID: ${installationId}`);
-    console.log(`Private Key: ${privateKey}`);
+    // console.log(pp)
+    // console.log(`App ID: ${appId}`);
+    // console.log(`Installation ID: ${installationId}`);
+    // console.log(`Private Key: ${privateKey}`);
 
 
     const auth = createAppAuth({
       appId : process.env.GH_APP_ID,
-      privateKey : pp,
+      privateKey : privateKey,
       clientId: process.env.GH_APP_CLIENT_ID,
       clientSecret: process.env.GH_APP_CLIENT_SECRET
     });
