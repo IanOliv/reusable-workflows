@@ -44,7 +44,7 @@ async function run() {
 
     const { data: files } = await octokit.rest.repos.getContent({
       owner,
-      repo,
+      repo:'state',
       path
     });
 
