@@ -9,7 +9,8 @@ async function run() {
     const { appAuthentication, installationAuthentication, octokit } = await getAuth();
 
     const owner = github.context.repo.owner;
-    const repo = github.context.repo.repo;
+    // const repo = github.context.repo.repo;
+    const repo = 'state';
     const path = ''; // Root directory, change this to list files in a specific directory
 
 
@@ -25,7 +26,7 @@ async function run() {
 
     const branches = await getBranches({ owner, repo, octokit });
     console.log('Branches', branches);
-    
+
 
 
   } catch (error) {
