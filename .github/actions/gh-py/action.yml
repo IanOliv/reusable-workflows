@@ -1,0 +1,25 @@
+name: "Run Python Script"
+description: "A custom action to run a Python script"
+runs:
+  using: "docker"
+  image: "python:3.10-slim"
+  args:
+    - "python"
+    - "/github/workspace/src/main.py"
+inputs:
+  repo:
+    description: "Repository"
+    required: true
+    default: 'state'
+  branch:
+    description: "Branch"
+    required: true
+    default: 'main'
+  path:
+    description: "Path to the Python script"
+    required: true
+    default: 'src/main.py'
+  python-version:
+    description: "Python version to use"
+    required: false
+    default: '3.10'

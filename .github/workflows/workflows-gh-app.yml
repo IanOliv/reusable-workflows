@@ -93,6 +93,13 @@ jobs:
           message: ${{ env.message || github.co.inputs.message }}
           branch: ${{ env.branch }}
           content: ${{ env.content  }}
+
+      - name: run  python script
+        uses: ./.github/actions/gh-py
+        with:
+          repo: ${{ env.repo }}
+          branch: ${{ env.branch }}
+      
   logs:
     runs-on: ubuntu-latest
     steps:
