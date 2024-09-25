@@ -3,7 +3,7 @@ name: Update Major Version on Main
 on:
   push:
     branches:
-      - main  # Change this if your major versioning branch is different
+      - latest  # Change this if your major versioning branch is different
 
 jobs:
   tag:
