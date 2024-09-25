@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TOKEN }}
 
       - name: Get the latest tag
         id: get_tag
@@ -40,6 +42,6 @@ jobs:
 
       - name: Push the new tag
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git push origin ${{ env.new_tag }}
