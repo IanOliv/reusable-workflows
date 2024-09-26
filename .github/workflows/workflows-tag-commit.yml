@@ -26,7 +26,10 @@ jobs:
           echo $(git describe --tags --abbrev=0 --always)
           echo '------'
 
-
+          echo '------'
+          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "No tags found")
+          echo $latest_tag
+          echo '------'
 
 
           # Get the latest tag
