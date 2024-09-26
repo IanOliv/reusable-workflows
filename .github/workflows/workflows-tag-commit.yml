@@ -20,6 +20,7 @@ jobs:
         run: |
           # Fetch all tags
           git fetch --tags
+          git pull --tags
 
           echo $(git describe --tags --abbrev=0 --always)
           echo $(git describe --tags )
