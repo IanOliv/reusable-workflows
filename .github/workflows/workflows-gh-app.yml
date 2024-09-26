@@ -3,11 +3,11 @@ run-name: Deploy to ${{ github.context.eventName }} by @${{ github.actor }}
 
 
 on:
-  push:
-    tags:
-      - v0.0.*
-    branches:
-      - main
+  # push:
+  #   tags:
+  #     - v0.0.*
+  #   branches:
+  #     - main
     
   workflow_dispatch:
     inputs:
