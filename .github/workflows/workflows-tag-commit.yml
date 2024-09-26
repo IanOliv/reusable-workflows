@@ -23,7 +23,7 @@ jobs:
           git pull --tags
 
           echo '------'
-          echo $(git describe --tags --abbrev=0 --always)
+          echo $(git tag -l)
           echo '------'
 
           echo '------'
