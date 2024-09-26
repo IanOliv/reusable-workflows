@@ -21,13 +21,13 @@ jobs:
           # Fetch all tags
           git fetch --tags
 
-          echo "Fetching tags"
+          echo $(git describe --tags --abbrev=0)
 
           # Get the latest tag
           latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
 
           echo "latest_tag=$latest_tag"
-          
+
 
           
           # Split the latest tag into components
