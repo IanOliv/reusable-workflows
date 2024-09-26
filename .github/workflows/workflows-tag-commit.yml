@@ -27,13 +27,19 @@ jobs:
           # Split the latest tag into components
           IFS='.' read -r major minor patch <<<"${latest_tag#v}"
 
+          echo "major=$major"
+          echo "minor=$minor" 
+          echo "patch=$patch" 
+
           # Increment the patch version
           patch=$((patch + 1))
+          echo "patch=$patch" 
 
           # Create the new tag
           new_tag="v${major}.${minor}.${patch}"
           
           echo "new_tag=$new_tag" >> $GITHUB_ENV
+          echo "new_tag=$new_tag"
 
       - name: Tag the commit
         run: |
