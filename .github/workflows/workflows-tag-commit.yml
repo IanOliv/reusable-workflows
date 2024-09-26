@@ -22,9 +22,12 @@ jobs:
           git fetch --tags
           git pull --tags
 
+          echo '------'
           echo $(git describe --tags --abbrev=0 --always)
-          echo $(git describe --tags )
-          echo $(git --tags)
+          echo '------'
+
+
+
 
           # Get the latest tag
           latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
