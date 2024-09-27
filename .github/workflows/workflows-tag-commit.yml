@@ -146,6 +146,14 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # Updated to v3
+        with:
+          repository: 'IanOliv/state'
+          ref: 'src'
+          token: ${{ secrets.TOKEN }}
+          path: ./state
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -154,3 +162,7 @@ jobs:
         shell: python
         run: |
           print("Hello, Python is the default shell!")
+      - name: List repository files
+        uses: ./.github/actions/gh-app-script
+        with:
+          repo: ${{ env.repo }}
