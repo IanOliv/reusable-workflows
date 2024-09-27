@@ -165,6 +165,7 @@ jobs:
           print("Hello, Python is the default shell!")
       - name: list files with python
         shell: python
+        working-directory: ./state
         run: |
           import os
           print(os.listdir())
