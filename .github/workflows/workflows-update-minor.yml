@@ -6,7 +6,8 @@ on:
       - release
 
 jobs:
-  tag:
+  tag-minor:
+    name: Tag a commit with the next minor version
     runs-on: ubuntu-latest
 
     steps:

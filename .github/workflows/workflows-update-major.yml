@@ -6,7 +6,8 @@ on:
       - latest  # Change this if your major versioning branch is different
 
 jobs:
-  tag:
+  tag-major: 
+    name: Tag a commit with the next major version
     runs-on: ubuntu-latest
 
     steps:

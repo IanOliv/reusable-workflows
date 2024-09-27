@@ -1,4 +1,4 @@
-name: Tag Commit on Develop 
+name: Tag Commit 
 
 on:
   push:
@@ -6,9 +6,9 @@ on:
       -  main
 
 jobs:
-  tag:
+  tag-patch:
+    name: Tag a commit with the next patch version
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -56,6 +56,91 @@ jobs:
           git tag ${{ env.new_tag }}
 
       - name: Push the tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          git push origin ${{ env.new_tag }}
+  tag-minor:
+    if: true == false
+    name: Tag a commit with the next minor version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TOKEN }}
+
+      - name: Get the latest tag
+        id: get_tag
+        run: |
+          # Fetch all tags
+          git fetch --tags
+
+          # Get the latest tag or set default
+          latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+
+          # Split the latest tag into components
+          IFS='.' read -r major minor patch <<<"${latest_tag#v}"
+
+          # Increment the minor version and reset patch version
+          minor=$((minor + 1))
+          patch=0
+
+          # Create the new tag
+          new_tag="v${major}.${minor}.${patch}"
+          
+          echo "new_tag=$new_tag" >> $GITHUB_ENV
+
+      - name: Tag the commit
+        run: |
+          git tag ${{ env.new_tag }}
+
+      - name: Push the new tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          git push origin ${{ env.new_tag }}
+
+
+  tag-major: 
+    name: Tag a commit with the next major version
+    if: true == false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TOKEN }}
+
+      - name: Get the latest tag
+        id: get_tag
+        run: |
+          # Fetch all tags
+          git fetch --tags
+
+          # Get the latest tag or default to v0.0.0 if no tags exist
+          latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+
+          # Split the latest tag into components
+          IFS='.' read -r major minor patch <<<"${latest_tag#v}"
+
+          # Increment the major version, and reset minor and patch versions
+          major=$((major + 1))
+          minor=0
+          patch=0
+
+          # Create the new tag
+          new_tag="v${major}.${minor}.${patch}"
+          
+          echo "new_tag=$new_tag" >> $GITHUB_ENV
+
+      - name: Tag the commit
+        run: |
+          git tag ${{ env.new_tag }}
+
+      - name: Push the new tag
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
