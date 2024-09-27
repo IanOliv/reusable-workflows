@@ -24,6 +24,7 @@ jobs:
 
           echo '------'
           echo $(git tag -l)
+          echo $(git tag -l | sort -V)
           echo $(git tag -l | tail -n 1 )
           echo '------'
 
