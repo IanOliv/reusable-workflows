@@ -159,13 +159,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - name: Install dependencies
+        working-directory: ./state
+        run: pip install -r ./requirements.txt
+        
       - name: Run Python script
         shell: python
         run: |
           print("Hello, Python is the default shell!")
-      - name: list files with python
-        shell: python
-        working-directory: ./state
-        run: |
-          import os
-          print(os.listdir())
