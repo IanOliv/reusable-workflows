@@ -155,13 +155,15 @@ jobs:
           token: ${{ secrets.TOKEN }}
           path: ./state
 
-      - name: Install build dependencies
-        run: sudo apt-get update && sudo apt-get install -y python3-dev build-essential
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y python3-dev build-essential
+        
       - name: Install dependencies
         working-directory: ./state
         run: pip install -r ./requirements.txt
