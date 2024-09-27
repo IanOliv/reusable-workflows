@@ -101,8 +101,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git push origin ${{ env.new_tag }}
-
-
   tag-major: 
     name: Tag a commit with the next major version
     if: true == false
@@ -145,3 +143,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git push origin ${{ env.new_tag }}
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Run Python script
+        shell: python
+        run: |
+          print("Hello, Python is the default shell!")
