@@ -3,7 +3,7 @@ name: My-Subworkflow-gh
 on:
   push:
     tags:
-      - gh*
+      - v0.0.*
   #   branches:
   #     - main
     
