@@ -1,10 +1,12 @@
 name: My-Subworkflow-gh
 
 on:
-  # push:
+  push:
+    tags:
+      - gh*
   #   branches:
   #     - main
-
+    
 jobs:
   build:
     runs-on: ubuntu-latest
