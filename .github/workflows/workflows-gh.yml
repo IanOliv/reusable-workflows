@@ -1,4 +1,4 @@
-name: My-Subworkflow-gh
+name: Workflow with gh cli
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    if: true == false
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -35,3 +35,26 @@ jobs:
           # Add your build and deploy commands here
           echo "Build and deploy complete"
  
+  prCreate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install gh
+      - name: Authenticate GitHub CLI
+        run: |
+          echo ${{ secrets }} 
+          echo ${{ secrets.TOKEN }} | gh auth login --with-token
+
+      - name: check credentials lookin for repos
+        run: |
+          gh repo list --limit 100
+      - name: Create a PR
+        run: |
+          gh pr create --base main --head feature-branch --title "My PR title" --body "My PR body"
+    
