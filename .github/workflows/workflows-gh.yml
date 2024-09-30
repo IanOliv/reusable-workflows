@@ -68,5 +68,5 @@ jobs:
       - name: Create a PR
         working-directory: /home/runner/work/reusable-workflows/state
         run: |
-          gh pr create --base main --head feature-branch --title "My PR title" --body "My PR body"
+          gh pr create --base main --head new-branch --title "My PR title" --body "My PR body" --repo IanOliv/state
     
