@@ -1,0 +1,20 @@
+name: Workflow with gh cli
+
+on:
+  push:
+    tags:
+      - v0.0.*
+    branches:
+      - feat/gh-manager
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: get gh app token
+        run: echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> $GITHUB_ENV
+
