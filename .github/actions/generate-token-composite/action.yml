@@ -1,0 +1,13 @@
+name: "Generate Token"
+description: "A custom action to run a GitHub script with @octokit/auth-app"
+runs:
+  using: "node20"
+  main: "index.js"
+inputs:
+  app-id:
+    description: "GitHub App ID"
+    required: true
+  private-key:
+    description: "GitHub App Private Key"
+    required: true
+ 
