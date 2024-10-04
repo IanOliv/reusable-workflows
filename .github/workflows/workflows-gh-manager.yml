@@ -3,34 +3,97 @@ run-name:   ${{ github.run_number }} @ ${{ github.run_id }} @ ${{ github.run_att
 
 on: [push]
 
+
+# on:
+#   # push:
+#   #   tags:
+#   #     - v0.0.*
+#   #   branches:
+#   #     - main
+    
+#   workflow_dispatch:
+#     inputs:
+#       repo: 
+#         description: 'The main branch of the repository'
+#         required: true
+#         default: 'state'
+#       path: 
+#         description: 'The main branch of the repository'
+#         required: true
+#         default: 'from-action-1.json'
+#       message: 
+#         description: 'The main branch of the repository'
+#         required: true
+#         default: 'chore: update state'
+#       branch: 
+#         description: 'The main branch of the repository'
+#         required: true
+#         default: 'main'
+#       content: 
+#         description: 'The main branch of the repository'
+#         required: true
+#         default: |
+#           {
+#             "state": "updatedx"
+#           }
+
+#       event_type:
+#         description: 'The type of event to trigger'
+#         required: true
+#         default: 'notification'
+#         type: choice
+#         options:
+#         - notification
+#         - createFile
+#         - deleteFile
+#         - updateFile
+#         - createBranch
+
+
+env:
+  IMAGE_NAME: ${{ github.repository }}
+  TOKEN: ${{ secrets.TOKEN }}
+  MAIN_BRANCH: ${{ secrets.MAIN_BRANCH }}
+  GH_APP_ID: ${{ secrets.GH_APP_ID }}
+  GH_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
+  GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
+  GH_APP_PRIVATE_KEY_PATH: ${{ secrets.GH_APP_PRIVATE_KEY_PATH }}
+  GH_APP_CLIENT_ID: ${{ secrets.GH_APP_CLIENT_ID }}
+  GH_APP_CLIENT_SECRET: ${{ secrets.GH_APP_CLIENT_SECRET }}
+  repo: ${{ inputs.repo || 'state' }}
+  path: ${{ inputs.path || 'state1.json' }}
+  branch: ${{ inputs.branch  || 'main' }}
+  content: ${{ inputs.content || '{ }' }}
+  message: ${{ inputs.message || 'chore update state' }}
+
+
+
+
 jobs:
-  generate-token:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-
-      - name: Generate GitHub App Token
-        id: generate_token
-        uses: ./.github/actions/generate-token  # Use the action defined in the repository
+      - name: Checkout code
+        uses: actions/checkout@v4  # Updated to v3
         with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
+          repository: 'IanOliv/state'
+          ref: 'src'
+          token: ${{ secrets.TOKEN }}
+          path: ./state
+      - name: Checkout code
+        uses: actions/checkout@v4  # Updated to v3
+        with:
+          token: ${{ secrets.TOKEN }}
+          
 
-      - name: Use GitHub App Token
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: |
-          ls -la
-          ls -la .github
-          ls -la .github/actions
-          ls -la .github/actions/generate-token
-          cat .github/actions/generate-token/action.yml
+      - name: List repository files
+        uses: ./.github/actions/gh-app-script
 
-          pwd 
-
-          echo $GITHUB_TOKEN
-          # Add your operations here
-          echo "Token generated and ready to use"
+      - name: run  python script
+        uses: ./.github/actions/gh-py
+        with:
+          repo: ${{ env.repo }}
+          branch: ${{ env.branch }}
+      
+ 

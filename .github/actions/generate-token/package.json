@@ -1,0 +1,11 @@
+{
+  "name": "gh-app-script",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@octokit/auth-app": "^3.0.0",
+    "@octokit/rest": "^18.0.0"
+  }
+}
