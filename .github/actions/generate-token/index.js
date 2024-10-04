@@ -28,6 +28,12 @@ async function getAuth() {
   const { GH_APP_CLIENT_ID,
     GH_APP_CLIENT_SECRET, GH_APP_PRIVATE_KEY,
     GH_APP_ID, GH_APP_INSTALLATION_ID } = process.env;
+    console.log('GH_APP_CLIENT_ID', GH_APP_CLIENT_ID);
+    console.log('GH_APP_CLIENT_SECRET', GH_APP_CLIENT_SECRET);
+    console.log('GH_APP_PRIVATE_KEY', GH_APP_PRIVATE_KEY);
+    console.log('GH_APP_ID', GH_APP_ID);
+    console.log('GH_APP_INSTALLATION_ID', GH_APP_INSTALLATION_ID);
+    
 
 
   const auth = createAppAuth({
