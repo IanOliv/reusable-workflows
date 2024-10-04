@@ -16,8 +16,8 @@ jobs:
         id: generate_token
         uses: ./.github/actions/generate-token  # Use the action defined in the repository
         with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Use GitHub App Token
         env:
