@@ -10,10 +10,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        
 
       - name: Generate GitHub App Token
         id: generate_token
-        uses: ./  # Use the action defined in the repository
+        uses: .github/generate-token/action.yml  # Use the action defined in the repository
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
