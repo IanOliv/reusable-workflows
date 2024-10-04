@@ -1,0 +1,16 @@
+name: Generate GitHub App Token
+
+description: Generate a token for a GitHub App and execute some operations
+
+inputs:
+  app_id:
+    description: 'GitHub App ID'
+    required: true
+  private_key:
+    description: 'GitHub App Private Key'
+    required: true
+
+runs:
+  using: 'node20'
+  main: 'index.js'
+
