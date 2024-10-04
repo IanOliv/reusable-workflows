@@ -1,5 +1,5 @@
 name: GitHub Manager Workflows
-runs-name:  ${{ github.run_number }} @ ${{ github.run_id }} @ ${{ github.run_attempt }} @ ${{ github.actor }} @ ${{ github.repository }} @ ${{ github.ref }} @ ${{ github.sha }} @ ${{ github.head_ref }} @ ${{ github.base_ref }} @ ${{ github.event_name }} @ ${{ github.event_path }} @ ${{ github.workspace }} @ ${{ github.action }} @ ${{ github.job }} @ ${{ github.run_id }} @ ${{ github.run_number }}
+run-name:   ${{ github.run_number }} @ ${{ github.run_id }} @ ${{ github.run_attempt }} @ ${{ github.actor }} @ ${{ github.repository }} @ ${{ github.ref }} @ ${{ github.sha }} @ ${{ github.head_ref }} @ ${{ github.base_ref }} @ ${{ github.event_name }} @ ${{ github.event_path }} @ ${{ github.workspace }} @ ${{ github.action }} @ ${{ github.job }} @ ${{ github.run_id }} @ ${{ github.run_number }}
 
 on: [push]
 
