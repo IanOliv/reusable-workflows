@@ -1,5 +1,5 @@
 name: GitHub Manager Workflows
-run-name:  ${{ github.actor }} @ ${{ github.repository }}: ${{ github.run_number }} 
+run-name:  Deploy to  ${{ github.actor }} @ ${{ github.repository }} / ${{ github.run_number }} 
 
 on: [push]
 
@@ -42,4 +42,3 @@ jobs:
           echo $GITHUB_TOKEN
           # Add your operations here
           echo "Token generated and ready to use"
-          
