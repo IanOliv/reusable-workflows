@@ -1,20 +1,26 @@
-name: Workflow with gh cli
+name: GitHub Manager Workflows
+runs-name:  ${{ github.run_number }} @ ${{ github.run_id }} @ ${{ github.run_attempt }} @ ${{ github.actor }} @ ${{ github.repository }} @ ${{ github.ref }} @ ${{ github.sha }} @ ${{ github.head_ref }} @ ${{ github.base_ref }} @ ${{ github.event_name }} @ ${{ github.event_path }} @ ${{ github.workspace }} @ ${{ github.action }} @ ${{ github.job }} @ ${{ github.run_id }} @ ${{ github.run_number }}
 
-on:
-  push:
-    tags:
-      - v0.0.*
-    branches:
-      - feat/gh-manager
-    
+on: [push]
+
 jobs:
-  build:
+  generate-token:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: get gh app token
-        run: echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> $GITHUB_ENV
 
+      - name: Generate GitHub App Token
+        id: generate_token
+        uses: ./  # Use the action defined in the repository
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Use GitHub App Token
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+        run: |
+          # Add your operations here
+          echo "Token generated and ready to use"
