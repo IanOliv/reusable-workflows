@@ -14,6 +14,7 @@ async function run() {
 
     console.log('Private key', private_key);
     console.log('App ID', app_id);
+    console.log(process.env);
 
     // core.setOutput('token', installationAuthentication.token);
 

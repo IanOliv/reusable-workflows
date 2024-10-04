@@ -6,8 +6,8 @@ runs:
 inputs:
   app-id:
     description: "GitHub App ID"
-    # required: true
+    required: true
   private-key:
     description: "GitHub App Private Key"
-    # required: true
+    required: true
  
