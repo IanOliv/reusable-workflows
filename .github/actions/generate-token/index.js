@@ -6,13 +6,16 @@ const fs = require('fs');
 
 async function run() {
   try {
-    const { appAuthentication, installationAuthentication, octokit } = await getAuth();
+    // const { appAuthentication, installationAuthentication, octokit } = await getAuth();
     const private_key = core.getInput('private-key');
     const app_id = core.getInput('app-id');
     // console.log(JSON.stringify(github));
     // console.log(JSON.stringify(core));
 
-    core.setOutput('token', installationAuthentication.token);
+    console.log('Private key', private_key);
+    console.log('App ID', app_id);
+
+    // core.setOutput('token', installationAuthentication.token);
 
   } catch (error) {
     console.error(error);
