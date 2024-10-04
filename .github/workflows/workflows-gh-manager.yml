@@ -12,12 +12,12 @@ jobs:
         uses: actions/checkout@v4
         
 
-      # - name: Generate GitHub App Token
-      #   id: generate_token
-      #   uses: ./.github/actions/generate-token/action.yml  # Use the action defined in the repository
-      #   with:
-      #     app_id: ${{ secrets.APP_ID }}
-      #     private_key: ${{ secrets.PRIVATE_KEY }}
+      - name: Generate GitHub App Token
+        id: generate_token
+        uses: .github/actions/generate-token  # Use the action defined in the repository
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Use GitHub App Token
         env:
