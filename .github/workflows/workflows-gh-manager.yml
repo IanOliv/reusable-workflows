@@ -32,8 +32,11 @@ jobs:
           ls -la .github/actions
           ls -la .github/actions/generate-token
           cat .github/actions/generate-token/action.yml
-
+          echop
           pwd 
+
+          echo  ${{ secrets.APP_ID }}
+          echo   ${{ secrets.PRIVATE_KEY }}
 
           echo $GITHUB_TOKEN
           # Add your operations here
