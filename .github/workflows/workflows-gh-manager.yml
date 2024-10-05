@@ -34,9 +34,10 @@ jobs:
           # cat .github/actions/generate-token/action.yml
           echo  "________"
           
-          echo  "${{ secrets.APP_ID }}"
-          echo  "${{ secrets.PRIVATE_KEY }}"
-          echo  "________"
+          # echo  "${{ secrets.APP_ID }}"
+          # echo  "${{ secrets.PRIVATE_KEY }}"
+          # echo  "$GITHUB_TOKEN"
+          # echo  "________"
 
           echo $GITHUB_TOKEN
           # Add your operations here
