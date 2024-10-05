@@ -92,7 +92,7 @@ jobs:
     - name: create file in repository
       run: |
         echo "Creating a new file" > newfile.txt
-        gh api repos/$GITHUB_OWNER/$GITHUB_REPOSITORY/contents/newfile.txt \
+        gh api repos/0xHackerSpace/.github/contents/newfile.txt \
           -X PUT \
           -F message='Creating a new file' \
           -F content="$(base64 newfile.txt)" \
