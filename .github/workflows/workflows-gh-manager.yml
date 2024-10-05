@@ -42,26 +42,28 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        repository: my-org/my-repo-2
+        repository: IanOliv/state
         token: ${{ steps.app-token.outputs.token }}
-        path: my-repo
+        path: state
+    - name: List files
+      run: ls -la state
 
     # example 1b - cloning repo - using git clone command
-    - name: Clone Repository
-      run: | 
-        mkdir my-repo-2 && cd my-repo-2
-        git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/my-org/my-repo.git
+    # - name: Clone Repository
+    #   run: | 
+    #     mkdir my-repo-2 && cd my-repo-2
+    #     git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/my-org/my-repo.git
 
     # example 2a - api - call an api using curl
-    - name: Get Repo (curl)
-      run: | 
-        curl \
-          -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
-          https://api.github.com/repos/joshjohanning-org/composite-caller-1
+    # - name: Get Repo (curl)
+    #   run: | 
+    #     curl \
+    #       -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
+    #       https://api.github.com/repos/joshjohanning-org/composite-caller-1
 
-    # example 2b - api - call an api using the GitHub CLI
-    - name: Get Repo (gh api)
-      env:
-        GH_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: | 
-        gh api /repos/joshjohanning-org/composite-caller-1
+    # # example 2b - api - call an api using the GitHub CLI
+    # - name: Get Repo (gh api)
+    #   env:
+    #     GH_TOKEN: ${{ steps.app-token.outputs.token }}
+    #   run: | 
+    #     gh api /repos/joshjohanning-org/composite-caller-1
