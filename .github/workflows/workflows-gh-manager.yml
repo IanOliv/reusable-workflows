@@ -89,7 +89,8 @@ jobs:
         GITHUB_OWNER: '0xHackerSpace'
         GITHUB_REPOSITORY: '.github'
 
-    - name: create file in repository
+    - name: create file in repository - 403 
+      if: false
       run: |
         echo "Creating a new file" > newfile.txt
         gh api repos/0xHackerSpace/.github/contents/newfile.txt \
@@ -101,6 +102,35 @@ jobs:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         GITHUB_OWNER: '0xHackerSpace'
         GITHUB_REPOSITORY: '.github'
+    # - name: commit on pull request 
+    #   run: gh pr create --base main --head feat/gh-manager --title "chore update state" --body "chore update state"
+
+    # - name: close merge request
+    # - name: add label to pull request
+    # - name: add tag 
+    # - name: add add release  
+    - name: add comment to pull request
+      run: gh pr comment 1 --repo 0xHackerSpace/.github --body "chore update state"
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        GITHUB_OWNER: '0xHackerSpace'
+        GITHUB_REPOSITORY: '.github'
+    # - name: add assignee to pull request
+    # - name: add reviewer to pull request
+    # - name: add milestone to pull request
+    # - name: add project to pull request
+    # - name: add project card to pull request
+    # - name: add project column to pull request
+    # - name: add project column to project
+    # - name: add project card to project column
+    # - name: add project card to project
+    # - name: add project column to project
+    # - name: add project to project
+    # - name: add project column to project
+    # - name: add project card to project
+
+
+
       
 
 
