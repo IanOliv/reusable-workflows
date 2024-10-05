@@ -110,7 +110,7 @@ jobs:
     # - name: add tag 
     # - name: add add release  
     - name: add comment to pull request
-      run: gh pr comment 1 --repo 0xHackerSpace/.github --body "chore update state"
+      run: gh pr comment 1 --repo 0xHackerSpace/.github --body "chore update statef"
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         GITHUB_OWNER: '0xHackerSpace'
