@@ -22,10 +22,10 @@ jobs:
       #   id: generate_token_composite
       #   uses: ./.github/actions/generate-token-composite  # Use the action defined in the repository
 
-      - name: Use GitHub cli
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: gh repo list IanOliv --limit 100 --json 'name'
+      # - name: Use GitHub cli
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+      #   run: gh repo list IanOliv --limit 100 --json 'name'
   checks:
     runs-on: ubuntu-latest
     needs: generate-token
