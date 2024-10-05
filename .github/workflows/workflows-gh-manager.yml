@@ -88,6 +88,19 @@ jobs:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         GITHUB_OWNER: '0xHackerSpace'
         GITHUB_REPOSITORY: '.github'
+
+    - name: create file in repository
+      run: |
+        echo "Creating a new file" > newfile.txt
+        gh api repos/$GITHUB_OWNER/$GITHUB_REPOSITORY/contents/newfile.txt \
+          -X PUT \
+          -F message='Creating a new file' \
+          -F content="$(base64 newfile.txt)" \
+          -F branch=main
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        GITHUB_OWNER: '0xHackerSpace'
+        GITHUB_REPOSITORY: '.github'
       
 
 
