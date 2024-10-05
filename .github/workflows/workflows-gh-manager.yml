@@ -37,7 +37,9 @@ jobs:
           # echo  "${{ secrets.APP_ID }}"
           # echo  "${{ secrets.PRIVATE_KEY }}"
           # echo  "$GITHUB_TOKEN"
-          # echo  "________"
+          # echo  "________" 
+          echo  $GITHUB_TOKEN | gh auth login --with-token
+          gh auth status
 
           echo $GITHUB_TOKEN
           # Add your operations here
