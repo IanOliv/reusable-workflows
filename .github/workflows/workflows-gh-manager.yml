@@ -27,7 +27,7 @@ on:
         description: 'Type of deployment'
         type: 'string'
         required: true
-        default: 'deploy'
+        default: 'list'
 
 
     
