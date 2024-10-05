@@ -26,17 +26,42 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
       #   run: gh repo list IanOliv --limit 100 --json 'name'
-  checks:
+  check-token:
     runs-on: ubuntu-latest
-    needs: 
-      - generate-token
-    env:
-      GITHUB_TOKEN: ${{ needs.generate-token.outputs.token }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
+    - uses: actions/create-github-app-token@v1
+      id: app-token
+      with: 
+        app-id: ${{ vars.APP_ID }}
+        private-key: ${{ secrets.PRIVATE_KEY }}
+        # optional: owner not needed IF the app has access to the repo running the workflow
+        #   if you get 'RequestError [HttpError]: Not Found 404', pass in owner
+        owner: ${{ github.repository_owner }}
 
-      - name: Use GitHub cli
-        run: gh repo list IanOliv --limit 100 --json 'name'
+    # example 1a - cloning repo - clone using the `actions/checkout` step
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        repository: my-org/my-repo-2
+        token: ${{ steps.app-token.outputs.token }}
+        path: my-repo
 
+    # example 1b - cloning repo - using git clone command
+    - name: Clone Repository
+      run: | 
+        mkdir my-repo-2 && cd my-repo-2
+        git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/my-org/my-repo.git
+
+    # example 2a - api - call an api using curl
+    - name: Get Repo (curl)
+      run: | 
+        curl \
+          -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
+          https://api.github.com/repos/joshjohanning-org/composite-caller-1
+
+    # example 2b - api - call an api using the GitHub CLI
+    - name: Get Repo (gh api)
+      env:
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
+      run: | 
+        gh api /repos/joshjohanning-org/composite-caller-1
