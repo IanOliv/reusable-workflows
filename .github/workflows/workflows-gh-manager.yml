@@ -76,10 +76,11 @@ jobs:
         path: state
 
     - name: List files
-      if: inputs.type == 'list'
+      # if: inputs.type == 'list'
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: gh repo list  ${{inputs.owner}}  --limit 100 --json 'name'
+        GITHUB_OWNER: '0xHackerSpace'
+      run: gh repo list $GITHUB_OWNER --limit 100 --json 'name'
 
 
 
