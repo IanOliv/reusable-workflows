@@ -1,7 +1,36 @@
 name: GitHub Manager Workflows
 run-name:  Deploy to  ${{ github.actor }} @ ${{ github.repository }} / ${{ github.run_number }} 
 
-on: [push]
+on: 
+  push:
+    branches:
+      - feat/gh-manager
+  workflow_dispatch:
+    inputs:
+      run-name:
+        description: 'Name of the run'
+        required: true
+        default: 'Deploy to '
+      repository:
+        description: 'Repository to deploy'
+        required: true
+        default: 'IanOliv/state'
+      owner:
+        description: 'Owner of the repository'
+        required: true
+        default: 'IanOliv'
+      team:
+        description: 'Team to deploy'
+        required: true
+        default: 'IanOliv'
+      type:
+        description: 'Type of deployment'
+        type: 'string'
+        required: true
+        default: 'deploy'
+
+
+    
 
 jobs:
   generate-token:
@@ -45,8 +74,13 @@ jobs:
         repository: IanOliv/state
         token: ${{ steps.app-token.outputs.token }}
         path: state
+
     - name: List files
+      if: inputs.type == 'list'
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: gh repo list IanOliv --limit 100 --json 'name'
+      run: gh repo list  ${{inputs.owner}}  --limit 100 --json 'name'
+
+
+
     
