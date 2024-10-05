@@ -38,7 +38,7 @@ jobs:
           # echo  "${{ secrets.PRIVATE_KEY }}"
           # echo  "$GITHUB_TOKEN"
           # echo  "________" 
-          echo  $GITHUB_TOKEN | gh auth login --with-token
+          echo  "${{ steps.generate_token.outputs.token }}" | gh auth login --with-token
           gh auth status
 
           echo $GITHUB_TOKEN
