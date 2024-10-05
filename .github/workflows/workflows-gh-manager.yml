@@ -23,24 +23,9 @@ jobs:
         id: generate_token_composite
         uses: ./.github/actions/generate-token-composite  # Use the action defined in the repository
 
-      - name: Use GitHub App Token
+      - name: Use GitHub cli
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: |
-          # ls -la
-          # ls -la .github
-          # ls -la .github/actions
-          # ls -la .github/actions/generate-token
-          # cat .github/actions/generate-token/action.yml
-          echo  "________"
-          
-          # echo  "${{ secrets.APP_ID }}"
-          # echo  "${{ secrets.PRIVATE_KEY }}"
-          # echo  "$GITHUB_TOKEN"
-          # echo  "________" 
-          gh auth login --with-token < $GITHUB_TOKEN
-          gh auth status || exit 1
+        run: gh repo list IanOliv --limit 100 --json 'name'
 
-          echo $GITHUB_TOKEN
-          # Add your operations here
-          echo "Token generated and ready to use"
+
