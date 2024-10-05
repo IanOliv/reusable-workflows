@@ -27,17 +27,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          ls -la
-          ls -la .github
-          ls -la .github/actions
-          ls -la .github/actions/generate-token
-          cat .github/actions/generate-token/action.yml
-          echop
-          pwd 
+          # ls -la
+          # ls -la .github
+          # ls -la .github/actions
+          # ls -la .github/actions/generate-token
+          # cat .github/actions/generate-token/action.yml
           echo  "________"
           
           echo  "${{ secrets.APP_ID }}"
-          # echo  "${{ secrets.PRIVATE_KEY }}"
+          echo  "${{ secrets.PRIVATE_KEY }}"
           echo  "________"
 
           echo $GITHUB_TOKEN
