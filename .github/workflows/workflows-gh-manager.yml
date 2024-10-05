@@ -83,7 +83,7 @@ jobs:
       run: gh repo list $GITHUB_OWNER --limit 100 --json 'name'
     
     - name: list files in repository
-      run: gh api repos/$GITHUB_OWNER/$GITHUB_REPOSITORY/contents --jq '.[].name'
+      run: gh api repos/0xHackerSpace/.github/contents --jq '.[].name'
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         GITHUB_OWNER: '0xHackerSpace'
