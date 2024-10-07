@@ -109,8 +109,9 @@ jobs:
     # - name: add label to pull request
     # - name: add tag 
     # - name: add add release  
-    - name: add comment to pull request
+    - name: add comment to pull request - 403 
       run: gh pr comment 1 --repo 0xHackerSpace/.github --body "chore update stateee"
+      if: false
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         GITHUB_OWNER: '0xHackerSpace'
@@ -128,6 +129,12 @@ jobs:
     # - name: add project to project
     # - name: add project column to project
     # - name: add project card to project
+    - name: create issue 
+      run: gh issue create --title "chore update state" --body "chore update state"
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        GITHUB_OWNER: '0xHackerSpace'
+        GITHUB_REPOSITORY: '.github'
 
 
 
