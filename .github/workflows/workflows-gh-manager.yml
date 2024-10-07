@@ -130,7 +130,7 @@ jobs:
     # - name: add project column to project
     # - name: add project card to project
     - name: create issue 
-      run: gh issue create --title "chore update state" --body "chore update state"
+      run: gh issue create --title "chore update state" --body "chore update state" --repo 0xHackerSpace/.github
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         GITHUB_OWNER: '0xHackerSpace'
