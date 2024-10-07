@@ -131,11 +131,18 @@ jobs:
     # - name: add project card to project
     - name: create issue 
       run: gh issue create --title "chore update state" --body "chore update state" --repo 0xHackerSpace/.github
+      if: false
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         GITHUB_OWNER: '0xHackerSpace'
         GITHUB_REPOSITORY: '.github'
-
+    - name: add comment to issue
+      run: gh issue comment 1 --repo 0xHackerSpace/.github --body "chore update stateee"
+      if: true
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        GITHUB_OWNER: '0xHackerSpace'
+        GITHUB_REPOSITORY: '.github'
 
 
       
