@@ -1,0 +1,48 @@
+name: Auto-Tag
+
+on:
+  push:
+    branches:
+      - main
+      - feat/gh-manager
+
+jobs:
+  auto-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get the latest commit hash
+        run: |
+          COMMIT_HASH=$(git rev-parse HEAD)
+          echo ::set-output name=COMMIT_HASH:: $COMMIT_HASH
+
+      - name: Update version using SemVer
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const gh = require('@actions/github');
+            const semver = require('semver');
+
+            // Get the latest commit hash from the output
+            const commitHash = process.env.COMMIT_HASH;
+
+            // Determine the next version using SemVer
+            let newVersion;
+            if (semver.major(process.env.GITHUB_REF) === 0) {
+              // If this is a patch release, increment the patch version
+              newVersion = semver.inc(semver.clean(process.env.GITHUB_REF), 'patch');
+            } else if (semver.minor(process.env.GITHUB_REF) === 0) {
+              // If this is a minor release, increment the minor version
+              newVersion = semver.inc(semver.clean(process.env.GITHUB_REF), 'minor');
+            } else {
+              // This is a major release, start over with v1.0.0
+              newVersion = 'v1.0.0';
+            }
+
+            console.log(`New version: ${newVersion}`);
+            fs.writeFile('tag.json', JSON.stringify({ ref: `v${newVersion}`, sha: commitHash }), () => {
+              console.log(`Tagged v${newVersion} for commit ${commitHash}`);
+            });
