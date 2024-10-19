@@ -30,7 +30,7 @@ jobs:
         run: |
           ls -la
           ls -la ./state
-          echo "IS_AC=true" >> $GITHUB_OUTPUT
+          echo "IS_AC=${{ inputs.is-act}}" >> $GITHUB_OUTPUT
 
       #     echo "${{ toJson(github.event) }}"
       #     echo "${{ toJson(vars) }}"
