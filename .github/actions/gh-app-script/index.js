@@ -20,8 +20,11 @@ async function run() {
     // const message = core.getInput('message');
     // // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
     // const content = core.getInput('content');
+    core.error('This is a bad error, action may still succeed though.')
 
-    core.summary.addRaw('Some content here :speech_balloon:', true)
+    core.warning('Something went wrong, but it\'s not bad enough to fail the build.')
+
+    core.notice('Something happened that you might want to know about.')
     // console.log('Owner', owner);
     // console.log('Repo', repo);
     // console.log('Path', path);
