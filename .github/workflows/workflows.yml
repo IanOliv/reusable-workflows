@@ -1,9 +1,9 @@
 name: My-Subworkflow
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
 
   workflow_dispatch:
     inputs:
@@ -32,7 +32,7 @@ jobs:
           ls -la ./state
           echo "IS_AC=${{ inputs.is-act}}" >> $GITHUB_OUTPUT
 
-      #     echo "${{ toJson(github.event) }}"
+      #     echo "${{ toJson(github) }}"
       #     echo "${{ toJson(vars) }}"
       #     echo "${{ toJson(github.event)  }}" >> $GITHUB_OUTPUT
   debug:
@@ -44,7 +44,7 @@ jobs:
       - name: list  list  vars 
         run: |
           ls -la
-          echo "${{ toJson(github.event) }}"
+          echo "${{ toJson(github) }}"
           echo "${{ toJson(vars) }}"
           echo "${{ needs.setup.outputs.is-act }}"
   debug-condition-1:

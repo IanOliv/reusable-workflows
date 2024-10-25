@@ -1,9 +1,15 @@
 name: Tag Commit 
 
 on:
-  push:
-    branches:
-      -  main
+  # push:
+  #   branches:
+  #     -  main
+  workflow_dispatch:
+    inputs:
+      is-act:
+        description: 'Is this an act?'
+        required: true
+        default: 'false'
 
 jobs:
   tag-patch:
