@@ -23,7 +23,7 @@ async function run() {
 
     core.saveState('state', 'value');
     core.saveState('stated', 'valuxxxe');
-
+    core.summary.addList(['item1', 'item2', 'item3'], true)
     core.startGroup('Group 1');
     core.info('This is a message');
     core.info('This is a message');
