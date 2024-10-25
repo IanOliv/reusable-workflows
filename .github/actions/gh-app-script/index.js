@@ -6,12 +6,12 @@ const fs = require('fs');
 
 async function run() {
   try {
-    const { appAuthentication, installationAuthentication, octokit } = await getAuth();
-    // const branch = core.getInput('private-key');
-    // console.log(JSON.stringify(github));
-    // console.log(JSON.stringify(core));
+    // const { appAuthentication, installationAuthentication, octokit } = await getAuth();
+    // // const branch = core.getInput('private-key');
+    // // console.log(JSON.stringify(github));
+    // // console.log(JSON.stringify(core));
 
-    const {  owner , } = github.context.repo;
+    // const {  owner , } = github.context.repo;
     // const repo = github.context.repo.repo;
     // const repo = core.getInput('repo');
     // const path =  ''; // Root directory, change this to list files in a specific directory
@@ -21,8 +21,8 @@ async function run() {
     // // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
     // const content = core.getInput('content');
 
-
-    console.log('Owner', owner);
+    core.summary.addRaw('Some content here :speech_balloon:', true)
+    // console.log('Owner', owner);
     // console.log('Repo', repo);
     // console.log('Path', path);
     // console.log('Path file', path_file);
