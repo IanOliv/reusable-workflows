@@ -40,11 +40,11 @@ runs:
         DEBUG: ${{ toJson(job) }}
       run: |
         echo $DEBUG
-        
-    - name: print all step context available
+
+    - name: print all steps context available
       shell: bash
       env:
-        DEBUG: ${{ toJson(step) }}
+        DEBUG: ${{ toJson(steps) }}
       run: |
         echo $DEBUG
 
