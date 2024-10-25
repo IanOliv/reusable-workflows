@@ -16,24 +16,24 @@ inputs:
   # private-key:
   #   description: "GitHub App Private Key"
   #   required: true
-  repo:
-    description: "Repository"
-    required: true
-    default: 'state'
-  branch:
-    description: "Branch"
-    required: true
-    default: 'main'
-  path:
-    description: "Path"
-    required: true
-    default: './state.json'
-  message:
-    description: "Message"
-    required: true
-    default: 'chore: update state'
-  content:
-    description: "Content"
-    required: true
-    default: 'state'
+  # repo:
+  #   description: "Repository"
+  #   required: true
+  #   default: 'state'
+  # branch:
+  #   description: "Branch"
+  #   required: true
+  #   default: 'main'
+  # path:
+  #   description: "Path"
+  #   required: true
+  #   default: './state.json'
+  # message:
+  #   description: "Message"
+  #   required: true
+  #   default: 'chore: update state'
+  # content:
+  #   description: "Content"
+  #   required: true
+  #   default: 'state'
   

@@ -47,6 +47,8 @@ jobs:
       #     echo "IS_AC=${{ inputs.is-act}}" >> $GITHUB_OUTPUT
       - name: Run Composite Action
         uses: ./.github/actions/gh-composite
+      - name: Run Composite Action
+        uses: ./.github/actions/gh-app-script
         # with:
         #   token: ${{ secrets.TOKEN }}
 

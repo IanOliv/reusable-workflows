@@ -13,22 +13,22 @@ async function run() {
 
     const {  owner , } = github.context.repo;
     // const repo = github.context.repo.repo;
-    const repo = core.getInput('repo');
-    const path =  ''; // Root directory, change this to list files in a specific directory
-    const path_file = core.getInput('path');
-    const branch = core.getInput('branch');
-    const message = core.getInput('message');
-    // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
-    const content = core.getInput('content');
+    // const repo = core.getInput('repo');
+    // const path =  ''; // Root directory, change this to list files in a specific directory
+    // const path_file = core.getInput('path');
+    // const branch = core.getInput('branch');
+    // const message = core.getInput('message');
+    // // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
+    // const content = core.getInput('content');
 
 
     console.log('Owner', owner);
-    console.log('Repo', repo);
-    console.log('Path', path);
-    console.log('Path file', path_file);
-    console.log('Branch', branch);
-    console.log('Message', message);
-    console.log('Content', content);
+    // console.log('Repo', repo);
+    // console.log('Path', path);
+    // console.log('Path file', path_file);
+    // console.log('Branch', branch);
+    // console.log('Message', message);
+    // console.log('Content', content);
 
     // const { data: files } = await octokit.rest.repos.getContent({
     //   owner,
@@ -44,8 +44,10 @@ async function run() {
     // console.log('Branches', branches);
     //  const branchs = await createBranch({ owner, repo, octokit, branch });
     //  console.log('Branch created', branchs);
-    const file = await createFile({ owner, repo, octokit,
-       path: path_file, message, content,branch });
+    // -----
+    // const file = await createFile({ owner, repo, octokit,
+    //    path: path_file, message, content,branch });
+    // ====---
     // console.log('File created', file);
     // const files = await getFiles({ owner, repo, octokit });
     // console.log('Files', files);
