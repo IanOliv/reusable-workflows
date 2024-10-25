@@ -25,6 +25,12 @@ jobs:
           ref: 'src'
           token: ${{ secrets.TOKEN }}
           path: ./state
+      - name: Checkout code
+        uses: actions/checkout@v4  # Updated to v3
+        with:
+          token: ${{ secrets.TOKEN }}
+
+          
       - name: list  directory
         id: vars
         run: |
@@ -33,6 +39,10 @@ jobs:
 
           ls -la ./state
           echo "IS_AC=${{ inputs.is-act}}" >> $GITHUB_OUTPUT
+      - name: Checkout code
+        uses: .github/actions/gh-composite/action.yml
+        # with:
+        #   token: ${{ secrets.TOKEN }}
 
       #     echo "${{ toJson(github) }}"
       #     echo "${{ toJson(vars) }}"
@@ -54,33 +64,35 @@ jobs:
           echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
           echo "k-----------------"
           echo "${{ needs.setup.outputs.is-act }}"
-  debug-condition-1:
-    if: ${{ needs.setup.outputs.is-act == 'true' }}
-    runs-on: 
-      labels: ubuntu-latest
-    needs: [setup, debug]
-    # outputs:
-    #   is-act: ${{ steps.vars.outputs.vars }}
-    steps:
-      - name: list  list  vars 
-        run: |
-          ls -la
-          echo "${{ toJson(github.event) }}"
-          echo "${{ toJson(vars) }}"
-          echo "${{ needs.setup.outputs.is-act }}"
-  debug-condition-2:
-    if: ${{ needs.setup.outputs.is-act == 'false' }}
 
-    runs-on: 
-      group: ubuntu-latest
-    needs: [setup, debug]
-    # outputs:
-    #   is-act: ${{ steps.vars.outputs.vars }}
-    steps:
-      - name: list  list  vars 
-        run: |
-          ls -la
-          echo "${{ toJson(github.event) }}"
-          echo "${{ toJson(vars) }}"
-          echo "${{ needs.setup.outputs.is-act }}"
+
+  # debug-condition-1:
+  #   if: ${{ needs.setup.outputs.is-act == 'true' }}
+  #   runs-on: 
+  #     labels: ubuntu-latest
+  #   needs: [setup, debug]
+  #   # outputs:
+  #   #   is-act: ${{ steps.vars.outputs.vars }}
+  #   steps:
+  #     - name: list  list  vars 
+  #       run: |
+  #         ls -la
+  #         echo "${{ toJson(github.event) }}"
+  #         echo "${{ toJson(vars) }}"
+  #         echo "${{ needs.setup.outputs.is-act }}"
+  # debug-condition-2:
+  #   if: ${{ needs.setup.outputs.is-act == 'false' }}
+
+  #   runs-on: 
+  #     group: ubuntu-latest
+  #   needs: [setup, debug]
+  #   # outputs:
+  #   #   is-act: ${{ steps.vars.outputs.vars }}
+  #   steps:
+  #     - name: list  list  vars 
+  #       run: |
+  #         ls -la
+  #         echo "${{ toJson(github.event) }}"
+  #         echo "${{ toJson(vars) }}"
+  #         echo "${{ needs.setup.outputs.is-act }}"
 
