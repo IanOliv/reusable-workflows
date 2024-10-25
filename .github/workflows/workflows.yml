@@ -29,12 +29,18 @@ jobs:
         uses: actions/checkout@v4  # Updated to v3
         with:
           token: ${{ secrets.TOKEN }}
+          # path: ./
 
           
-      # - name: list  directory
-      #   id: vars
-      #   run: |
-      #     ls -la
+      - name: list  directory
+        id: vars
+        run: |
+          ls -la
+          ls -la .github
+          ls -la .github/actions
+          ls -la .github/actions/gh-composite
+          
+
       
 
       #     ls -la ./state
