@@ -20,6 +20,17 @@ async function run() {
     // const message = core.getInput('message');
     // // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
     // const content = core.getInput('content');
+
+    // 3/4 bit
+    core.info('\u001b[35mThis foreground will be magenta')
+
+    // 8 bit
+    core.info('\u001b[38;5;6mThis foreground will be cyan')
+
+    // 24 bit
+    core.info('\u001b[38;2;255;0;0mThis foreground will be bright red')
+
+
     core.error('This is a bad error, action may still succeed though.')
 
     core.warning('Something went wrong, but it\'s not bad enough to fail the build.')
