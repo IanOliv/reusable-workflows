@@ -29,6 +29,8 @@ jobs:
         id: vars
         run: |
           ls -la
+      
+
           ls -la ./state
           echo "IS_AC=${{ inputs.is-act}}" >> $GITHUB_OUTPUT
 
@@ -48,6 +50,9 @@ jobs:
           # GITHUB
         run: |
           ls -la
+          echo "k-----------------"
+          echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
+          echo "k-----------------"
           echo "${{ needs.setup.outputs.is-act }}"
   debug-condition-1:
     if: ${{ needs.setup.outputs.is-act == 'true' }}
