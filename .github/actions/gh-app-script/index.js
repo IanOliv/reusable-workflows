@@ -21,6 +21,20 @@ async function run() {
     // // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
     // const content = core.getInput('content');
 
+    core.saveState('state', 'value');
+    core.saveState('stated', 'value');
+
+    core.startGroup('Group 1');
+    core.info('This is a message');
+    core.info('This is a message');
+    core.info('This is a message');
+    core.error('This is a bad error, action may still succeed though.')
+
+    core.warning('Something went wrong, but it\'s not bad enough to fail the build.')
+
+    core.notice('Something happened that you might want to know about.')
+    core.endGroup();
+
     // 3/4 bit
     core.info('\u001b[35mThis foreground will be magenta')
 
