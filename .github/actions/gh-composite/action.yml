@@ -13,3 +13,10 @@ runs:
       shell: bash
       run: |
         echo "Installing dependencies..."
+    - name: print all context available
+      shell: bash
+      env:
+        DEBUG: ${{ toJson(github) }}
+      run: |
+        echo $DEBUG
+
