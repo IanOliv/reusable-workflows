@@ -22,7 +22,7 @@ async function run() {
     // const content = core.getInput('content');
 
     core.saveState('state', 'value');
-    core.saveState('stated', 'value');
+    core.saveState('stated', 'valuxxxe');
 
     core.startGroup('Group 1');
     core.info('This is a message');
@@ -34,7 +34,8 @@ async function run() {
 
     core.notice('Something happened that you might want to know about.')
     core.endGroup();
-
+core.info(core.getState('state'));  
+core.info(core.getState('stated'));  
     // 3/4 bit
     core.info('\u001b[35mThis foreground will be magenta')
 
