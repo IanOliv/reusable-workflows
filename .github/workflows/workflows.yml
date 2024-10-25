@@ -49,12 +49,12 @@ jobs:
         uses: ./.github/actions/gh-composite
       - name: Run Composite Action
         uses: ./.github/actions/gh-app-script
-        with:
-          repo: ${{ env.repo }}
-          path: ${{ env.path }}
-          message: ${{ env.message || github.co.inputs.message }}
-          branch: ${{ env.branch }}
-          content: ${{ env.content  }}
+        # with:
+        #   repo: ${{ env.repo }}
+        #   path: ${{ env.path }}
+        #   message: ${{ env.message || github.co.inputs.message }}
+        #   branch: ${{ env.branch }}
+        #   content: ${{ env.content  }}
 
 
         # with:
