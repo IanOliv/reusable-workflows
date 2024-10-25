@@ -41,11 +41,13 @@ jobs:
     # outputs:
     #   is-act: ${{ steps.vars.outputs.vars }}
     steps:
-      - name: list  list  vars 
+      - name: list list vars 
+        id: vars
+        env:
+          IS_AC: ${{ needs.setup.outputs.is-act }}
+          # GITHUB
         run: |
           ls -la
-          echo "${{ toJson(github) }}"
-          echo "${{ toJson(vars) }}"
           echo "${{ needs.setup.outputs.is-act }}"
   debug-condition-1:
     if: ${{ needs.setup.outputs.is-act == 'true' }}
