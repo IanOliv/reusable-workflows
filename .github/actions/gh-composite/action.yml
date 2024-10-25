@@ -1,0 +1,14 @@
+name: "Run Composite Action"
+description: "A custom action to run a composite action"
+inputs:
+  repo:
+    description: "Repository"
+    required: false
+    default: 'state'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies
+      run: |
+        echo "Installing dependencies..."
