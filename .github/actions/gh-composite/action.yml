@@ -13,10 +13,38 @@ runs:
       shell: bash
       run: |
         echo "Installing dependencies..."
-    - name: print all context available
+    - name: print all GH context available
       shell: bash
       env:
         DEBUG: ${{ toJson(github) }}
+      run: |
+        echo $DEBUG
+
+
+    - name: print all env context available
+      shell: bash
+      env:
+        DEBUG: ${{ toJson(env) }}
+      run: |
+        echo $DEBUG
+
+    - name: print all runner context available
+      shell: bash
+      env:
+        DEBUG: ${{ toJson(runner) }}
+      run: |
+        echo $DEBUG
+    - name: print all job context available
+      shell: bash
+      env:
+        DEBUG: ${{ toJson(job) }}
+      run: |
+        echo $DEBUG
+        
+    - name: print all step context available
+      shell: bash
+      env:
+        DEBUG: ${{ toJson(step) }}
       run: |
         echo $DEBUG
 
