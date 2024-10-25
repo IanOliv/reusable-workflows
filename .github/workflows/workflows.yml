@@ -46,7 +46,7 @@ jobs:
       #     ls -la ./state
       #     echo "IS_AC=${{ inputs.is-act}}" >> $GITHUB_OUTPUT
       - name: Run Composite Action
-        uses: IanOliv/reusable-workflows/.github/actions/gh-composite/action.yml
+        uses: IanOliv/reusable-workflows/.github/actions/gh-composite/action.yml@main
         # with:
         #   token: ${{ secrets.TOKEN }}
 
