@@ -3,7 +3,7 @@ description: "A custom action to run a GitHub script with @octokit/auth-app"
 runs:
   using: "node20"
   main: "index.js"
-inputs:
+# inputs:
   # github-token:
   #   description: "GitHub Token"
   #   required: true
