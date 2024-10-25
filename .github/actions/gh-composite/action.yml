@@ -10,5 +10,6 @@ runs:
   using: "composite"
   steps:
     - name: Install dependencies
+      shell: bash
       run: |
         echo "Installing dependencies..."
