@@ -13,11 +13,27 @@ runs:
     
     - name: Get time of initialization
       id: init
-      
       shell: bash
       run: |
         echo "${{ github.job }}" 
         echo "date=$(date)" 
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
+        echo "job-init=$(date)" >> $GITHUB_OUTPUT
+    - name: Get time of end
+      id: end
+      shell: bash
+      run: |
+        echo "${{ github.job }}" 
+        echo "date=$(date)" 
+        echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
+        echo "job-end=$(date)" >> $GITHUB_OUTPUT
+    - name: Send time to GitHub
+      id: send
+      shell: bash
+      run: |
+        echo "${{ github.job }} metrics" >> $GITHUB_SUMMARY 
+        echo "" >> $GITHUB_SUMMARY
+        echo "job-init= ${{ steps.init }}" >> $GITHUB_SUMMARY
+        echo "job-end= ${{ steps.end }}" >> $GITHUB_SUMMARY
 
 
