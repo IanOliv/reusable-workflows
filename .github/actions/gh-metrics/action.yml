@@ -50,6 +50,5 @@ runs:
         echo "## ${{ github.job }} metrics ${{inputs.action}}" >> $GITHUB_STEP_SUMMARY 
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "----" >> $GITHUB_STEP_SUMMARY
-        cat ./${{ github.job }}-metrics >> $GITHUB_STEP_SUMMARY
 
 
