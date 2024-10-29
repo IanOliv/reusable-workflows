@@ -16,11 +16,5 @@ runs:
       
       shell: bash
       run: |
-        echo "::set-output name=time::$(date)"
-        echo "::set-output name=action::init"
-        echo "::set-output name=action::end"
-        echo "::set-output name=action::send"
-        echo "::set-output name=action::init"
+        echo "${{ github.job }}" 
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
-        echo "job-id=${{ github.job }}" 
-
