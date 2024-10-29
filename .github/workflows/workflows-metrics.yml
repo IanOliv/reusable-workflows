@@ -13,10 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Run Composite Action
-        uses: ./.github/actions/gh-metrics
-        with:
-          action: 'init'
+      # - name: Run Composite Action
+      #   uses: ./.github/actions/gh-metrics
+      #   with:
+      #     action: 'init'
       - name: Send time to GitHub
         id: send
         shell: bash
