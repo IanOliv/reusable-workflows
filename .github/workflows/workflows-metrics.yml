@@ -21,7 +21,7 @@ jobs:
         id: send
         shell: bash
         run: |
-          echo "## ${{ github.job }} metrics" >> $GITHUB_SUMMARY 
+          echo "## ${{ github.job }} metrics" >> $GITHUB_STEP_SUMMARY 
           # echo "" >> $GITHUB_SUMMARY
           # echo "job-init= ${{ steps.init }}" >> $GITHUB_SUMMARY
           # echo "job-end= ${{ steps.end }}" >> $GITHUB_SUMMARY
