@@ -1,14 +1,9 @@
-name: CI
+name: "Metrics Workflow"
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
-    workflow_dispatch:
-    repository_dispatch:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [metrics]
 
 jobs:
     build:
@@ -22,7 +17,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-9-${{ hashFiles('**/package-lock.json') }} 
           # restore-keys: |
           #     ${{ runner.os }}-node-
 
