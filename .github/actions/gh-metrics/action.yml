@@ -12,7 +12,7 @@ outputs:
   job-end:
     description: "End job output"
     value: ${{ steps.end.outputs.job-end }}
-    
+
 
 
 runs:
@@ -51,6 +51,7 @@ runs:
       run: |
 
         echo "job-id=${{ github.job }} end" >> $GITHUB_OUTPUT
+        echo "job-end=$(date)" >> $GITHUB_OUTPUT
         cat $GITHUB_OUTPUT >> ./${{ github.job }}-metrics
 
     - name: Send time to GitHub
