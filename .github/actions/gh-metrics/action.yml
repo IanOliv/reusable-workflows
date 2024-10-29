@@ -58,7 +58,7 @@ runs:
       id: send
       shell: bash
       run: |
-        echo "## ${{ github.job }} metrics ${{inputs.action}}" >> $GITHUB_STEP_SUMMARY 
+        echo "## ${{ github.job }} metrics ${{inputs.action}}" > $GITHUB_STEP_SUMMARY 
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "----" >> $GITHUB_STEP_SUMMARY
 
