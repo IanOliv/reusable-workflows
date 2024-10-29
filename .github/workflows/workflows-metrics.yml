@@ -39,6 +39,23 @@ jobs:
         uses: ./.github/actions/gh-metrics
         with:
           action: 'end'
+    always:
+      runs-on: ubuntu-latest
+      needs: [build, build2]
+      if: always()
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run Composite Action
+        uses: ./.github/actions/gh-metrics
+        with:
+          action: 'init'
+          
+      - name: Run Composite Action
+        uses: ./.github/actions/gh-metrics
+        with:
+          action: 'end'
           
       # - name: Send time to GitHub
       #   id: send
