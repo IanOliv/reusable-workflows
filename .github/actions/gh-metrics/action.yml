@@ -11,6 +11,7 @@ runs:
     
     - name: Get time of initialization
       id: init
+      if: ${{ inputs.action == 'init' }}
       shell: bash
       run: |
         echo "${{ github.job }}" 
@@ -22,6 +23,7 @@ runs:
       run: sleep 5
     - name: Get time of end
       id: end
+      if: ${{ inputs.action == 'end' }}
       shell: bash
       run: |
         echo "${{ github.job }}" 
