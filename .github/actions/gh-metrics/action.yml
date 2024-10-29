@@ -5,6 +5,16 @@ inputs:
     description: "what action to run: init, end, send"
     required: false
     default: 'init'
+outputs:
+  job-init:
+    description: "Initialization job output"
+    value: ${{ steps.init.outputs.job-init }}
+  job-end:
+    description: "End job output"
+    value: ${{ steps.end.outputs.job-end }}
+    
+
+
 runs:
   using: "composite"
   steps:

@@ -8,17 +8,22 @@ on:
 jobs:
     build:
       runs-on: ubuntu-latest
+      outputs:
+        job-init: ${{ steps.init.outputs.job-init }}
+        job-end: ${{ steps.end.outputs.job-end }}
 
       steps:
       - name: Checkout code
         uses: actions/checkout@v4
       
       - name: Run Composite Action
+        id: init
         uses: ./.github/actions/gh-metrics
         with:
           action: 'init'
           
       - name: Run Composite Action
+        id: end
         uses: ./.github/actions/gh-metrics
         with:
           action: 'end'
@@ -26,16 +31,22 @@ jobs:
     build2:
       runs-on: ubuntu-latest
       needs: build
+      outputs:
+        job-init: ${{ steps.init.outputs.job-init }}
+        job-end: ${{ steps.end.outputs.job-end }}
+
       steps:
       - name: Checkout code
         uses: actions/checkout@v4
       
       - name: Run Composite Action
+        id: init
         uses: ./.github/actions/gh-metrics
         with:
           action: 'init'
           
       - name: Run Composite Action
+        id: end
         uses: ./.github/actions/gh-metrics
         with:
           action: 'end'
@@ -62,6 +73,10 @@ jobs:
         shell: bash
         run: |
           echo "## ${{ github.job }} " >> $GITHUB_STEP_SUMMARY 
+          echo  "job-init: ${{ needs.build.outputs.job-init }}" >> $GITHUB_STEP_SUMMARY
+          echo  "job-end: ${{ needs.build.outputs.job-end }}" >> $GITHUB_STEP_SUMMARY
+          echo  "job-init: ${{ needs.build2.outputs.job-init }}" >> $GITHUB_STEP_SUMMARY
+          echo  "job-end: ${{ needs.build2.outputs.job-end }}" >> $GITHUB_STEP_SUMMARY
 
           ls -la $GITHUB_WORKSPACE
 
