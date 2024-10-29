@@ -5,7 +5,10 @@ inputs:
     description: "what action to run: init, end, send"
     required: false
     default: 'init'
-
+  debug:
+    description: "debug mode"
+    required: false
+    default: 'true'
 
 runs:
   using: "composite"
@@ -19,6 +22,8 @@ runs:
         echo "date=$(date)" 
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
         echo "job-init=$(date)" >> $GITHUB_OUTPUT
+    - name: sleep 5
+      run: sleep 5
     - name: Get time of end
       id: end
       shell: bash
