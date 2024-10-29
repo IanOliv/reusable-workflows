@@ -28,7 +28,7 @@ runs:
         echo ${{ steps.cache-metrics.outputs.cache-hit }}
         echo ${{ steps.cache-metrics.outputs.cache-key }}
         echo ${{ steps.cache-metrics.outputs.cache-path }}
-        echo ${{ fromJson(steps.cache-metrics.outputs) }}
+
 
 
 
