@@ -1,4 +1,4 @@
-name: "Run Composite Action"
+name: "retrive Metrics"
 description: "A custom action to run a composite action"
 inputs:
   action:
