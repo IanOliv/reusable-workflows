@@ -5,11 +5,6 @@ inputs:
     description: "what action to run: init, end, send"
     required: false
     default: 'init'
-  debug:
-    description: "debug mode"
-    required: false
-    default: 'true'
-
 runs:
   using: "composite"
   steps:
