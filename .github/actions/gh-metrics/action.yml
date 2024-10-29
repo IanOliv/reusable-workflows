@@ -22,3 +22,5 @@ runs:
         echo "::set-output name=action::send"
         echo "::set-output name=action::init"
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
+        echo "job-id=${{ github.job }}" 
+
