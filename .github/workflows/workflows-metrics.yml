@@ -17,6 +17,17 @@ jobs:
         uses: ./.github/actions/gh-metrics
         with:
           action: 'init'
+      - name: Send time to GitHub
+        id: send
+        shell: bash
+        run: |
+          echo "## ${{ github.job }} metrics" >> $GITHUB_SUMMARY 
+          # echo "" >> $GITHUB_SUMMARY
+          # echo "job-init= ${{ steps.init }}" >> $GITHUB_SUMMARY
+          # echo "job-end= ${{ steps.end }}" >> $GITHUB_SUMMARY
+
+
+      
       # - name: Cache Node.js modules
       #   uses: actions/cache@v2
       #   with:
