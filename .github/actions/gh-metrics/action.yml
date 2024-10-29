@@ -25,10 +25,7 @@ runs:
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
         echo "job-init=$(date)" >> $GITHUB_OUTPUT
         echo $GITHUB_OUTPUT
-        echo ${{ steps.cache-metrics.outputs.cache-hit }}
-        echo ${{ steps.cache-metrics.outputs.cache-key }}
-        echo ${{ steps.cache-metrics.outputs.cache-path }}
-
+        cat $GITHUB_OUTPUT
 
 
 
