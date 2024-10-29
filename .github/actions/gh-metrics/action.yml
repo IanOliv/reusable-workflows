@@ -1,0 +1,24 @@
+name: "Run Composite Action"
+description: "A custom action to run a composite action"
+inputs:
+  action:
+    description: "what action to run: init, end, send"
+    required: false
+    default: 'init'
+
+
+runs:
+  using: "composite"
+  steps:
+    
+    - name: Get time of initialization
+      id: init
+      if: ${{ github.event.inputs.action == 'init' }}
+      shell: bash
+      run: |
+        echo "::set-output name=time::$(date)"
+        echo "::set-output name=action::init"
+        echo "::set-output name=action::end"
+        echo "::set-output name=action::send"
+        echo "::set-output name=action::init"
+        echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
