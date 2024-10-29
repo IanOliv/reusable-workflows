@@ -33,7 +33,7 @@ runs:
       run: |
         echo "## ${{ github.job }} metrics" >> $GITHUB_STEP_SUMMARY 
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "job-init= ${{ steps.init.outputs.job-end }}" >> $GITHUB_STEP_SUMMARY
+        echo "job-init= ${{ steps.init.outputs.job-init }}" >> $GITHUB_STEP_SUMMARY
         echo "job-end= ${{ steps.end.outputs.job-end }}" >> $GITHUB_STEP_SUMMARY
 
 
