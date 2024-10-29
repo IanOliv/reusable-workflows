@@ -18,6 +18,7 @@ runs:
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
         echo "job-init=$(date)" >> $GITHUB_OUTPUT
     - name: sleep 5
+      shell: bash
       run: sleep 5
     - name: Get time of end
       id: end
