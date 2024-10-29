@@ -16,10 +16,10 @@ runs:
         key: ${{ github.job }}-metrics
         restore-keys: ${{ github.job }}-metrics
 
-        
+
     - name: Get time of initialization
       id: init
-      if: ${{ inputs.action == 'init' && steps.cache-metrics.outputs.cache-hit != 'true' }}
+      if: ${{ inputs.action == 'init'  }}
       
       shell: bash
       run: |
