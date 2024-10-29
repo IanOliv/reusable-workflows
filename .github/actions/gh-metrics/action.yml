@@ -13,7 +13,7 @@ runs:
     
     - name: Get time of initialization
       id: init
-      if: ${{ github.event.inputs.action == 'init' }}
+      
       shell: bash
       run: |
         echo "::set-output name=time::$(date)"
