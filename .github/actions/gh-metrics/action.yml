@@ -10,6 +10,7 @@ runs:
   steps:
     - name: Cache values
       id: cache-metrics
+  
       uses: actions/cache@v4
       with:
         path: ${{ github.job }}-metrics
@@ -45,7 +46,7 @@ runs:
         echo "date=$(date)" 
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
         echo "job-end=$(date)" >> $GITHUB_OUTPUT
-        cat $GITHUB_OUTPUT >> ./cache-metrics/${{ github.job }}-metrics
+        cat $GITHUB_OUTPUT >> ./${{ github.job }}-metrics
 
     - name: Send time to GitHub
       id: send
