@@ -17,7 +17,7 @@ runs:
       shell: bash
       run: |
         echo "${{ github.job }}" 
-        echo "date=$(date)" >> $GITHUB_OUTPUT
+        echo "date=$(date)" 
         echo "job-id=${{ github.job }}" >> $GITHUB_OUTPUT
 
 
