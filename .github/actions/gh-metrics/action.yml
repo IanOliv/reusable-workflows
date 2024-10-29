@@ -17,7 +17,7 @@ runs:
 
     - name: Get time of initialization
       id: init
-      if: ${{ inputs.action == 'init' }}
+      if: ${{ inputs.action == 'init' && steps.cache-metrics.outputs.cache-hit != 'true' }}
       shell: bash
       run: |
         echo "${{ github.job }}" 
