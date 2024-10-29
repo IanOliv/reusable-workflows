@@ -54,12 +54,12 @@ runs:
         echo "job-end=$(date)" >> $GITHUB_OUTPUT
         cat $GITHUB_OUTPUT >> ./${{ github.job }}-metrics
 
-    - name: Send time to GitHub
-      id: send
-      shell: bash
-      run: |
-        echo "## ${{ github.job }} metrics ${{inputs.action}}" > $GITHUB_STEP_SUMMARY 
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "----" >> $GITHUB_STEP_SUMMARY
+    # - name: Send time to GitHub
+    #   id: send
+    #   shell: bash
+    #   run: |
+    #     echo "## ${{ github.job }} metrics ${{inputs.action}}" > $GITHUB_STEP_SUMMARY 
+    #     echo "" >> $GITHUB_STEP_SUMMARY
+    #     echo "----" >> $GITHUB_STEP_SUMMARY
 
 
