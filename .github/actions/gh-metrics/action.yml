@@ -24,11 +24,8 @@ runs:
       
       shell: bash
       run: |
-        echo "${{ github.job }}" 
-        echo "date=$(date)" 
         echo "job-id=${{ github.job }} init" >> $GITHUB_OUTPUT
         echo "job-init=$(date)" >> $GITHUB_OUTPUT
-        echo $GITHUB_OUTPUT
         cat $GITHUB_OUTPUT >> ./${{ github.job }}-metrics
 
 
@@ -42,10 +39,8 @@ runs:
       if: ${{ inputs.action == 'end' }}
       shell: bash
       run: |
-        echo "${{ github.job }} " 
-        echo "date=$(date)" 
+
         echo "job-id=${{ github.job }} end" >> $GITHUB_OUTPUT
-        echo "job-end=$(date)" >> $GITHUB_OUTPUT
         cat $GITHUB_OUTPUT >> ./${{ github.job }}-metrics
 
     - name: Send time to GitHub
