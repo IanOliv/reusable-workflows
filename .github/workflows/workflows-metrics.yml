@@ -13,18 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      # - name: Run Composite Action
-      #   uses: ./.github/actions/gh-metrics
-      #   with:
-      #     action: 'init'
-      - name: Send time to GitHub
-        id: send
-        shell: bash
-        run: |
-          echo "## ${{ github.job }} metrics" >> $GITHUB_STEP_SUMMARY 
-          # echo "" >> $GITHUB_SUMMARY
-          # echo "job-init= ${{ steps.init }}" >> $GITHUB_SUMMARY
-          # echo "job-end= ${{ steps.end }}" >> $GITHUB_SUMMARY
+      - name: Run Composite Action
+        uses: ./.github/actions/gh-metrics
+        with:
+          action: 'init'
+      # - name: Send time to GitHub
+      #   id: send
+      #   shell: bash
+      #   run: |
+      #     echo "## ${{ github.job }} metrics" >> $GITHUB_STEP_SUMMARY 
+      #     # echo "" >> $GITHUB_SUMMARY
+      #     # echo "job-init= ${{ steps.init }}" >> $GITHUB_SUMMARY
+      #     # echo "job-end= ${{ steps.end }}" >> $GITHUB_SUMMARY
 
 
       
