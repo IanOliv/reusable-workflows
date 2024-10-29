@@ -17,6 +17,12 @@ jobs:
         uses: ./.github/actions/gh-metrics
         with:
           action: 'init'
+          
+      - name: Run Composite Action
+        uses: ./.github/actions/gh-metrics
+        with:
+          action: 'end'
+          
       # - name: Send time to GitHub
       #   id: send
       #   shell: bash
