@@ -22,4 +22,6 @@ jobs:
 
     - name: echo token
       run: env
-
+      env:
+        SECRET_VAR: ${{ fromJson(secrets.MY_SECRET) }}
+        VAR_VAR: ${{ fromJson(vars.MY_VAR) }}
