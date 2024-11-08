@@ -13,13 +13,19 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    - name: Retrieve app token
-      uses: ./.github/actions/gh-app-script
+    - name: Retrieve app token 
+      uses: tibdex/github-app-token@v1
+      id: get_installation_token
       with:
-        action: 'init'
         app-id: ${{ secrets.GH_APP_ID }}
         private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+    # - name: Retrieve app token
+    #   uses: ./.github/actions/gh-app-script
+    #   with:
+    #     action: 'init'
+    #     app-id: ${{ secrets.GH_APP_ID }}
+    #     private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
     - name: echo token
       run: echo "token generated"
