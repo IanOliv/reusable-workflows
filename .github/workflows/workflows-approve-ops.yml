@@ -1,0 +1,25 @@
+name: ApproveOps Workflow
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  approve-ops:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Retrieve app token
+      uses: ./github/actions/gh-app
+      with:
+        action: 'init'
+        app-id: ${{ secrets.GH_APP_ID }}
+        private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+    - name: echo token
+      run: echo "token generated"
