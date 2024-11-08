@@ -6,85 +6,18 @@ const fs = require('fs');
 
 async function run() {
   try {
-    // const { appAuthentication, installationAuthentication, octokit } = await getAuth();
-    // // const branch = core.getInput('private-key');
-    // // console.log(JSON.stringify(github));
-    // // console.log(JSON.stringify(core));
 
-    // const {  owner , } = github.context.repo;
-    // const repo = github.context.repo.repo;
-    // const repo = core.getInput('repo');
-    // const path =  ''; // Root directory, change this to list files in a specific directory
-    // const path_file = core.getInput('path');
-    // const branch = core.getInput('branch');
-    // const message = core.getInput('message');
-    // // const content = Buffer.from('Hello Worldddddddd!').t;oString('base64');
-    // const content = core.getInput('content');
+      const appId = core.getInput('app-id');
+      const privateKey = core.getInput('private-key');
 
-    core.saveState('state', 'value');
-    core.saveState('stated', 'valuxxxe');
-    core.summary.addRaw('Some content here :speech_balloon:', true)
-    // Output: Some content here :speech_balloon:\n
+      const auth = createAppAuth({
+          appId,
+          privateKey
+      });
 
-    core.summary.addList(['item1', 'item2', 'item3'], true)
-    // Add an operating system-specific end-of-line marker
-    core.summary.addEOL()
-    core.startGroup('Group 1');
-    core.info('This is a message');
-    core.info('This is a message');
-    core.info('This is a message');
-    // core.error('This is a bad error, action may still succeed though.')
+      const { token } = await auth({ type: 'installation' });
 
-    // core.warning('Something went wrong, but it\'s not bad enough to fail the build.')
-
-    // core.notice('Something happened that you might want to know about.')
-    core.endGroup();
-// core.info(core.getState('state'));  
-// core.info(core.getState('stated'));  
-//     // 3/4 bit
-//     core.info('\u001b[35mThis foreground will be magenta')
-
-//     // 8 bit
-//     core.info('\u001b[38;5;6mThis foreground will be cyan')
-
-//     // 24 bit
-//     core.info('\u001b[38;2;255;0;0mThis foreground will be bright red')
-
-
-//     core.error('This is a bad error, action may still succeed though.')
-
-//     core.warning('Something went wrong, but it\'s not bad enough to fail the build.')
-
-//     core.notice('Something happened that you might want to know about.')
-    // console.log('Owner', owner);
-    // console.log('Repo', repo);
-    // console.log('Path', path);
-    // console.log('Path file', path_file);
-    // console.log('Branch', branch);
-    // console.log('Message', message);
-    // console.log('Content', content);
-
-    // const { data: files } = await octokit.rest.repos.getContent({
-    //   owner,
-    //   repo,
-    //   path
-    // });
-
-    // for (const file of files) {
-    //   console.log(`- ${ file.name }`);
-    // }
-
-    // const branches = await getBranches({ owner, repo, octokit });
-    // console.log('Branches', branches);
-    //  const branchs = await createBranch({ owner, repo, octokit, branch });
-    //  console.log('Branch created', branchs);
-    // -----
-    // const file = await createFile({ owner, repo, octokit,
-    //    path: path_file, message, content,branch });
-    // ====---
-    // console.log('File created', file);
-    // const files = await getFiles({ owner, repo, octokit });
-    // console.log('Files', files);
+      core.setOutput('token', token);
 
 
 
