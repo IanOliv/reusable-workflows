@@ -7,7 +7,7 @@ async function run() {
   try {
       const appId = core.getInput('app-id');
       const privateKey = core.getInput('private-key');
-    //   const installationId = core.getInput('installation-id'); // Add this line
+      const installationId = core.getInput('installation-id'); // Add this line
 
     //   const auth = createAppAuth({
     //       appId,
