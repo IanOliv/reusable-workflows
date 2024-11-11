@@ -8,82 +8,33 @@ inputs:
   app-id:
     description: "GitHub App ID"
     required: true
+  installation-id:
+    description: "GitHub App ID"
+    required: true
   private-key:
     description: "GitHub App Private Key"
     required: true
-outputs:
-  token:
-    description: "GitHub App Token"
-    value: ${{ steps.generate-token.outputs.token }}
-#   job-init:
-#     description: "Initialization job output"
-#     value: ${{ steps.init.outputs.job-init }}
-#   job-end:
-#     description: "End job output"
-#     value: ${{ steps.end.outputs.job-end }}
-
 runs:
-  using: "composite"
-  steps:
-    - name: Generate GitHub Token
-      id: generate-token
-      shell: bash
-      run: |
-        echo "${{ inputs.private-key }}" > private-key.pem
-        jwt=$(ruby -r openssl -r base64 -e '
-          header = { alg: "RS256", typ: "JWT" }
-          payload = {
-            iat: Time.now.to_i,
-            exp: Time.now.to_i + 600,
-            iss: $ARGV[0]
-          }
-          key = OpenSSL::PKey::RSA.new(File.read("private-key.pem"))
-          token = Base64.urlsafe_encode64(header.to_json) + "." + Base64.urlsafe_encode64(payload.to_json)
-          signature = Base64.urlsafe_encode64(key.sign(OpenSSL::Digest::SHA256.new, token))
-          puts token + "." + signature
-        ' ${{ inputs['app-id'] }})
-        echo "jwt=$jwt" >> $GITHUB_ENV
-        installation_id=$(curl -s -X GET -H "Authorization: Bearer $jwt" -H "Accept: application/vnd.github.v3+json" https://api.github.com/app/installations | jq '.[0].id')
-        token=$(curl -s -X POST -H "Authorization: Bearer $jwt" -H "Accept: application/vnd.github.v3+json" https://api.github.com/app/installations/$installation_id/access_tokens | jq -r .token)
-        echo "token=$token" >> $GITHUB_ENV
-
-    # - name: Cache values
-    #   id: cache-metrics
-    #   uses: actions/cache@v4
-    #   with:
-    #     path: ${{ github.job }}-metrics
-    #     key: ${{ github.job }}-metrics
-    #     restore-keys: ${{ github.job }}-metrics
-
-    # - name: Get time of initialization
-    #   id: init
-    #   if: ${{ inputs.action == 'init' }}
-    #   shell: bash
-    #   run: |
-    #     echo "job-id=${{ github.job }} init" >> $GITHUB_OUTPUT
-    #     echo "job-init=$(date)" >> $GITHUB_OUTPUT
-    #     cat $GITHUB_OUTPUT >> ./${{ github.job }}-metrics
-
-    # - name: Sleep 5
-    #   shell: bash
-    #   run: sleep 5
-
-    # - name: Get time of end
-    #   id: end
-    #   if: ${{ inputs.action == 'end' }}
-    #   shell: bash
-    #   run: |
-    #     echo "job-id=${{ github.job }} end" >> $GITHUB_OUTPUT
-    #     echo "job-end=$(date)" >> $GITHUB_OUTPUT
-    #     cat $GITHUB_OUTPUT >> ./${{ github.job }}-metrics
-
-    # - name: Send time to GitHub
-    #   id: send
-    #   if: ${{ inputs.action == 'send' }}
-    #   shell: bash
-    #   run: |
-    #     echo "## ${{ github.job }} metrics ${{ inputs.action }}" > $GITHUB_STEP_SUMMARY
-    #     echo "" >> $GITHUB_STEP_SUMMARY
-    #     echo "----" >> $GITHUB_STEP_SUMMARY
-
-
+  using: "node20"
+  main: "index.js"
+  # repo:
+  #   description: "Repository"
+  #   required: true
+  #   default: 'state'
+  # branch:
+  #   description: "Branch"
+  #   required: true
+  #   default: 'main'
+  # path:
+  #   description: "Path"
+  #   required: true
+  #   default: './state.json'
+  # message:
+  #   description: "Message"
+  #   required: true
+  #   default: 'chore: update state'
+  # content:
+  #   description: "Content"
+  #   required: true
+  #   default: 'state'
+  
