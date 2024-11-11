@@ -13,7 +13,8 @@ async function run() {
       
       const auth = createAppAuth({
           appId,
-          privateKey
+          privateKey,
+            installationId
       });
 
         const { token } = await auth({ type: 'installation', installationId }); // Modify this line
