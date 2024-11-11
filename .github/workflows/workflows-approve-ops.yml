@@ -11,25 +11,26 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/github-script@v7
-              id: my-script
-              with:
-                  result-encoding: string
-                  script: |
-                    github.rest.issues.createComment({
-                    issue_number: context.issue.number,
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    body: '👋 Thanks for reporting!'
-                    })
-        # - name:  Checkout code
-        #   uses: actions/checkout@v4
+            # - uses: actions/github-script@v7
+            #   id: my-script
+            #   with:
+            #       result-encoding: string
+            #       script: |
+            #         github.rest.issues.createComment({
+            #         issue_number: context.issue.number,
+            #         owner: context.repo.owner,
+            #         repo: context.repo.repo,
+            #         body: '👋 Thanks for reporting!'
+            #         })
+        - name:  Checkout code
+          uses: actions/checkout@v4
 
-        # - name: Retrieve app token
-        #   uses: ./.github/actions/gh-app-script
-        #   with:
-        #     app-id: ${{ secrets.GH_APP_ID }}
-        #     private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+        - name: Retrieve app token
+          uses: ./.github/actions/gh-app-script
+          with:
+            app-id: ${{ secrets.GH_APP_ID }}
+            private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+            # private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
         # - name: echo token
         #   run: |
