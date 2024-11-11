@@ -3,20 +3,17 @@ const github = require('@actions/github');
 const { createAppAuth } = require('@octokit/auth-app');
 const { Octokit } = require('@octokit/rest');
 
-
-const fs = require('fs');
-
 async function run() {
   try {
       const appId = core.getInput('app-id');
       const privateKey = core.getInput('private-key');
-      const installationId = core.getInput('installation-id'); // Add this line
+    //   const installationId = core.getInput('installation-id'); // Add this line
 
-      const auth = createAppAuth({
-          appId,
-          privateKey
-      });
-      console.log('Auth', auth);
+    //   const auth = createAppAuth({
+    //       appId,
+    //       privateKey
+    //   });
+      console.log('Auth');
 
     //   const { token } = await auth({ type: 'installation', installationId }); // Modify this line
 
