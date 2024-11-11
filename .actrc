@@ -1,0 +1,4 @@
+-W .github/workflows/workflows-tag-commit.yml
+-P ubuntu-latest=-self-hosted   
+--var-file .variables
+--secret-file .secrets
