@@ -1,27 +1,41 @@
 name: ApproveOps Workflow
 
 on:
-  issues:
-    types: [opened, edited, reopened]
-  issue_comment:
-    types: [created, edited]
+    issues:
+        types: [opened, edited, reopened]
+    issue_comment:
+        types: [created, edited]
 
 jobs:
-  approve-ops:
-    runs-on: ubuntu-latest
+    approve-ops:
+        runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Retrieve app token
-      uses: ./.github/actions/gh-app-script
-      with:
-        app-id: ${{ secrets.GH_APP_ID }}
-        private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+        steps:
+            - uses: actions/github-script@v7
+              id: my-script
+              with:
+                  result-encoding: string
+                  script: |
+                     let issues =github.rest.issues.get({
+                          issue_number: context.issue.number,
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                      })
+                      console.log(issues)
+                      console.log('issues')
+        # - name:  Checkout code
+        #   uses: actions/checkout@v4
 
-    # - name: echo token
-    #   run: env
-    #   env:
-    #     SECRET_VAR: ${{ secrets.MY_SECRET }}
-    #     VAR_VAR: ${{ fromJson(secrets.MY_VAR) }}
+        # - name: Retrieve app token
+        #   uses: ./.github/actions/gh-app-script
+        #   with:
+        #     app-id: ${{ secrets.GH_APP_ID }}
+        #     private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+        # - name: echo token
+        #   run: |
+        #     echo ${{ secrets.GH_APP_ID }}
+
+        #   env:
+        #     SECRET_VAR: ${{ secrets.MY_SECRET }}
+        #     VAR_VAR: ${{ fromJson(secrets.MY_VAR) }}
