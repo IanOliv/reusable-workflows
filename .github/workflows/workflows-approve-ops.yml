@@ -20,8 +20,8 @@ jobs:
     #     app-id: ${{ secrets.GH_APP_ID }}
     #     private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-    - name: echo token
-      run: env
-      env:
-        SECRET_VAR: ${{ fromJson(secrets.MY_SECRET) }}
-        VAR_VAR: ${{ fromJson(vars.MY_VAR) }}
+    # - name: echo token
+    #   run: env
+    #   env:
+    #     SECRET_VAR: ${{ secrets.MY_SECRET }}
+    #     VAR_VAR: ${{ fromJson(secrets.MY_VAR) }}
