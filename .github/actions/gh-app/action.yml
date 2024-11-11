@@ -10,7 +10,7 @@ inputs:
     required: true
   installation-id:
     description: "GitHub App ID"
-    required: true
+    required: false
   private-key:
     description: "GitHub App Private Key"
     required: true
