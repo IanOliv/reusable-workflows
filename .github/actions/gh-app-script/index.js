@@ -19,6 +19,9 @@ async function run() {
 
         const { token } = await auth({ type: 'installation', installationId }); // Modify this line
       core.setOutput('token', token);
+      console.log('Token', token);
+      console.log('auth', auth);
+
 
 
 
