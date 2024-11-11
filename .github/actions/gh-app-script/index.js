@@ -9,14 +9,14 @@ async function run() {
 
       const appId = core.getInput('app-id');
       const privateKey = core.getInput('private-key');
-
+      const installationId = core.getInput('installation-id');
+      
       const auth = createAppAuth({
           appId,
           privateKey
       });
 
-      const { token } = await auth({ type: 'installation' });
-
+        const { token } = await auth({ type: 'installation', installationId }); // Modify this line
       core.setOutput('token', token);
 
 
