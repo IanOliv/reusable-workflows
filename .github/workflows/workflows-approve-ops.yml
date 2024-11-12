@@ -30,6 +30,7 @@ jobs:
             result-encoding: string
             github-token: ${{ steps.app-token.outputs.token }}
             script: |
+                console.log(context)
                 github.rest.issues.addLabels({
                     issue_number: context.issue.number,
                     owner: context.repo.owner,
