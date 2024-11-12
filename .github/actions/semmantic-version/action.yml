@@ -28,8 +28,7 @@ runs:
       id: get_patch_tag
       run: |
         # Fetch all tags
-        git fetch --tags
-        git pull --tags
+
 
         echo '------'
         echo $(git tag -l)
@@ -68,7 +67,6 @@ runs:
       id: get_minor_tag
       run: |
         # Fetch all tags
-        git fetch --tags
 
         # Get the latest tag or set default
         latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
@@ -92,7 +90,7 @@ runs:
       id: get_major_tag
       run: |
         # Fetch all tags
-        git fetch --tags
+
 
         # Get the latest tag or default to v0.0.0 if no tags exist
         latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
