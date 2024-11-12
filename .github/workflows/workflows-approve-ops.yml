@@ -32,6 +32,7 @@ jobs:
           uses: ./.github/actions/semmantic-version
           with:
             tag-type: patch
+            token: ${{ steps.app-token.outputs.token }}
             # private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
             # installation-id: ${{ secrets.GH_APP_INSTALLATION_ID }}
 
