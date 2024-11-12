@@ -17,14 +17,14 @@ runs:
       uses: actions/checkout@v4
       with:
         token: ${{ inputs.TOKEN }}
-        work-directory: ./tags
+        # work-directory: ./tags
         fetch-tags: 0
         fetch-depth: 0
 
     - name: Get the patch tag
       if: ${{ inputs.tag-type == 'patch' }}
       shell: bash
-      working-directory: ./tags
+    #   working-directory: ./tags
       id: get_patch_tag
       run: |
         # Fetch all tags
@@ -64,7 +64,7 @@ runs:
     - name: Get the minor tag
       shell: bash
       if: ${{ inputs.tag-type == 'minor' }}
-      working-directory: ./tags
+    #   working-directory: ./tags
       id: get_minor_tag
       run: |
         # Fetch all tags
@@ -88,7 +88,7 @@ runs:
     - name: Get the  major tag
       shell: bash
       if: ${{ inputs.tag-type == 'major' }}
-      working-directory: ./tags
+    #   working-directory: ./tags
       id: get_major_tag
       run: |
         # Fetch all tags
@@ -115,13 +115,13 @@ runs:
 
     - name: Tag the commit
       shell: bash
-      working-directory: ./tags
+    #   working-directory: ./tags
       run: |
         git tag ${{ env.new_tag }}
 
     - name: Push the tag
       shell: bash
-      working-directory: ./tags
+    #   working-directory: ./tags
       env:
         GITHUB_TOKEN: ${{ inputs.TOKEN }}
       run: |
