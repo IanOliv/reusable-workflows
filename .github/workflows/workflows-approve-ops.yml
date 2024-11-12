@@ -49,7 +49,7 @@ jobs:
             echo ${{ steps.my-script.outputs.result }}
             echo '------'
             # git pull --tags
-            git tag -l
+            git tag -l | sort -V
             echo '------'
             ls -la
             
