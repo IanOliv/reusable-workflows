@@ -46,7 +46,7 @@ jobs:
           run: |
             echo ${{ steps.my-script.outputs.result }}
             echo '------'
-            git pull --tags
+            # git pull --tags
             git tag -l
             echo '------'
             ls -la
