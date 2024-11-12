@@ -114,6 +114,8 @@ runs:
       if: ${{ inputs.tag-type == 'stable' }}
       shell: bash
     #   working-directory: ./tags
+      env:
+        GITHUB_TOKEN: ${{ inputs.TOKEN }}    
       run: |
         if git rev-parse stable >/dev/null 2>&1; then
             git tag -d stable
