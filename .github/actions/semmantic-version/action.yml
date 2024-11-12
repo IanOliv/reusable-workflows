@@ -27,14 +27,6 @@ runs:
     #   working-directory: ./tags
       id: get_patch_tag
       run: |
-        # Fetch all tags
-
-
-        echo '------'
-        echo $(git tag -l)
-        echo $(git tag -l | sort -V)
-        echo $(git tag -l | sort -V| tail -n 1)
-        echo '------'
 
         # Get the latest tag
         latest_tag=$(git tag -l | sort -V | tail -n 1 || echo "v0.0.0")
@@ -89,7 +81,6 @@ runs:
     #   working-directory: ./tags
       id: get_major_tag
       run: |
-        # Fetch all tags
 
 
         # Get the latest tag or default to v0.0.0 if no tags exist
