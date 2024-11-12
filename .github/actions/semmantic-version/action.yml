@@ -99,17 +99,9 @@ runs:
         
         echo "new_tag=$new_tag" >> $GITHUB_ENV
 
-    # - name: Get the latest tag
-    #   shell: bash
-    # #   working-directory: ./tags
-    #   id: get_latest_tag
-    #   run: |
-    #     latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
-    #     echo "latest_tag=$latest_tag" >> $GITHUB_ENV
-
-
-    - name: Tag the commit
+    - name: Tag the code to latest 
       shell: bash
+      if: ${{ inputs.tag-type == 'patch' || inputs.tag-type == 'minor' || inputs.tag-type == 'major' }}
     #   working-directory: ./tags
       run: |
         git tag ${{ env.new_tag }}
@@ -118,8 +110,20 @@ runs:
         fi
         git tag latest
 
+    - name: Tag the code to stable 
+      if: ${{ inputs.tag-type == 'stable' }}
+      shell: bash
+    #   working-directory: ./tags
+      run: |
+        if git rev-parse stable >/dev/null 2>&1; then
+            git tag -d stable
+        fi
+        git tag stable
+
+
     - name: Push the tag
       shell: bash
+      if: ${{ inputs.tag-type == 'patch' || inputs.tag-type == 'minor' || inputs.tag-type == 'major'  }}
     #   working-directory: ./tags
       env:
         GITHUB_TOKEN: ${{ inputs.TOKEN }}
