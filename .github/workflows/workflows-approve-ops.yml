@@ -1,5 +1,5 @@
 name: ApproveOps Workflow
-run-name: "${GITHUB_EVENT_NAME} by @${GITHUB_ACTOR}"
+run-name: ${GITHUB_EVENT_NAME} by @${GITHUB_ACTOR}
 
 on:
     issues:
