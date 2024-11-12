@@ -43,7 +43,7 @@ jobs:
         - name: Checkout code
           run: |
             echo ${{ steps.my-script.outputs.result }}
-            git status
+            git tag -l
 
         # - name: echo token
         #   run: |
