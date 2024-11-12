@@ -23,6 +23,7 @@ runs:
 
     - name: Get the patch tag
       if: ${{ inputs.tag-type == 'patch' }}
+      shell: bash
       working-directory: ./tags
       id: get_patch_tag
       run: |
@@ -61,6 +62,7 @@ runs:
         echo "new_tag=$new_tag"
 
     - name: Get the minor tag
+      shell: bash
       if: ${{ inputs.tag-type == 'minor' }}
       working-directory: ./tags
       id: get_minor_tag
@@ -84,6 +86,7 @@ runs:
         echo "new_tag=$new_tag" >> $GITHUB_ENV
 
     - name: Get the  major tag
+      shell: bash
       if: ${{ inputs.tag-type == 'major' }}
       working-directory: ./tags
       id: get_major_tag
@@ -111,11 +114,13 @@ runs:
 
 
     - name: Tag the commit
+      shell: bash
       working-directory: ./tags
       run: |
         git tag ${{ env.new_tag }}
 
     - name: Push the tag
+      shell: bash
       working-directory: ./tags
       env:
         GITHUB_TOKEN: ${{ inputs.TOKEN }}
