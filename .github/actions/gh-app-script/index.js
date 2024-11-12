@@ -2,7 +2,6 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const { createAppAuth } = require('@octokit/auth-app');
 const { Octokit } = require('@octokit/rest');
-const fs = require('fs');
 
 async function run() {
   try {
@@ -17,7 +16,7 @@ async function run() {
             installationId
       });
 
-        const { token } = await auth({ type: 'installation', installationId }); // Modify this line
+      const { token } = await auth({ type: 'installation', installationId }); // Modify this line
       core.setOutput('token', token);
       console.log('auth', auth);
 

@@ -37,6 +37,10 @@ jobs:
                     repo: context.repo.repo,
                     labels: ['Triage']
                 })
+
+
+        - name: Checkout code
+          run: echo "${GITHUB_EVENT_NAME} by @${GITHUB_ACTOR}"
         # - name: echo token
         #   run: |
         #     echo ${{ secrets.GH_APP_ID }}
