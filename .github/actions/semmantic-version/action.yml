@@ -121,7 +121,7 @@ runs:
             git tag -d stable
         fi
         git tag stable
-        git push origin stable
+        git push origin stable --force
 
 
     - name: Push the tag
