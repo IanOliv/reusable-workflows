@@ -1,10 +1,10 @@
 name: "Run Composite Action"
 description: "A custom action to run a composite action"
 inputs:
-  repo:
-    description: "Repository"
-    required: false
-    default: 'state'
+#   repo:
+#     description: "Repository"
+#     required: false
+#     default: 'state'
   tag-type:
     description: "What type of tag to create"
     required: true
