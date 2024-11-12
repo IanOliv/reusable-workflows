@@ -1,10 +1,10 @@
 name: "Run Composite Action"
 description: "A custom action to run a composite action"
 inputs:
-#   repo:
-#     description: "Repository"
-#     required: false
-#     default: 'state'
+  token:
+    description: "token"
+    required: false
+    default: ''
   tag-type:
     description: "What type of tag to create"
     required: true
@@ -16,7 +16,7 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.TOKEN }}
+        token: ${{ inputs.TOKEN }}
         fetch-tags: 0
         fetch-depth: 0
 
@@ -112,6 +112,6 @@ runs:
 
     - name: Push the tag
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.TOKEN }}
       run: |
         git push origin ${{ env.new_tag }}  
