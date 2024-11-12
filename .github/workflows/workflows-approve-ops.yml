@@ -47,7 +47,7 @@ jobs:
             echo ${{ steps.my-script.outputs.result }}
             git tag -l
 
-            git ls -la
+            ls -la
             
 
         # - name: echo token
