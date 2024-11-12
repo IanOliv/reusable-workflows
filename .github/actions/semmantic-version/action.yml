@@ -99,7 +99,13 @@ runs:
         
         echo "new_tag=$new_tag" >> $GITHUB_ENV
 
-
+    # - name: Get the latest tag
+    #   shell: bash
+    # #   working-directory: ./tags
+    #   id: get_latest_tag
+    #   run: |
+    #     latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+    #     echo "latest_tag=$latest_tag" >> $GITHUB_ENV
 
 
     - name: Tag the commit
@@ -107,6 +113,9 @@ runs:
     #   working-directory: ./tags
       run: |
         git tag ${{ env.new_tag }}
+        git tag -d latest
+        git tag latest
+
 
     - name: Push the tag
       shell: bash
