@@ -113,9 +113,10 @@ runs:
     #   working-directory: ./tags
       run: |
         git tag ${{ env.new_tag }}
-        git tag -d latest
+        if git rev-parse latest >/dev/null 2>&1; then
+            git tag -d latest
+        fi
         git tag latest
-
 
     - name: Push the tag
       shell: bash
