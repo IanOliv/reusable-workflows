@@ -16,7 +16,7 @@ jobs:
         - name:  Checkout code
           uses: actions/checkout@v4
           with:
-            fetch-tags: 2
+            fetch-tags: true
 
         - name: Retrieve app token
           id: app-token
@@ -45,8 +45,9 @@ jobs:
         - name: Checkout code
           run: |
             echo ${{ steps.my-script.outputs.result }}
+            echo '------'
             git tag -l
-
+            echo '------'
             ls -la
             
 
