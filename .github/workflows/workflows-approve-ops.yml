@@ -41,7 +41,10 @@ jobs:
 
 
         - name: Checkout code
-          run: echo "${GITHUB_EVENT_NAME} by @${GITHUB_ACTOR}"
+          run: |
+            echo ${{ steps.my-script.outputs.result }}
+            git status
+
         # - name: echo token
         #   run: |
         #     echo ${{ secrets.GH_APP_ID }}
