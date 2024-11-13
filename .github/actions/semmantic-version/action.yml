@@ -1,5 +1,5 @@
-name: "Run Composite Action"
-description: "A custom action to run a composite action"
+name: 'Semmantic Version Action'
+description: " This action creates a incremental version tag, set the latest/stable tag and push the tag to the repository"
 inputs:
   token:
     description: "token"
@@ -9,6 +9,9 @@ inputs:
     description: "What type of tag to create"
     required: true
     default: 'patch'
+branding:
+    icon: 'tag'
+    color: 'purple'
 
 runs:
   using: "composite"
@@ -16,7 +19,7 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        token: ${{ inputs.TOKEN }}
+        token: ${{ inputs.token }}
         # work-directory: ./tags
         fetch-tags: 0
         fetch-depth: 0
@@ -115,7 +118,7 @@ runs:
       shell: bash
     #   working-directory: ./tags
       env:
-        GITHUB_TOKEN: ${{ inputs.TOKEN }}    
+        GITHUB_TOKEN: ${{ inputs.token }}    
       run: |
         if git rev-parse stable >/dev/null 2>&1; then
             git tag -d stable
@@ -129,6 +132,6 @@ runs:
       if: ${{ inputs.tag-type == 'patch' || inputs.tag-type == 'minor' || inputs.tag-type == 'major'  }}
     #   working-directory: ./tags
       env:
-        GITHUB_TOKEN: ${{ inputs.TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.token }}
       run: |
         git push origin ${{ env.new_tag }}  latest
