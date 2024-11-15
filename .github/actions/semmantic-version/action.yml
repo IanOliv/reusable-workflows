@@ -114,7 +114,7 @@ runs:
         if git rev-parse latest >/dev/null 2>&1; then
             git tag -d latest
         fi
-        git tag latest
+        git tag latest --force
 
     - name: Tag the code to stable 
       if: ${{ inputs.tag-type == 'stable' }}
