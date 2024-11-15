@@ -1,5 +1,5 @@
 name: 'Semmantic Version Action'
-description: " This action creates a incremental version tag, set the latest/stable tag and push the tag to the repository"
+description: " This action creates a incremental version tag, set the latest/stable tag and push the tag to the repository "
 inputs:
   token:
     description: "token"

@@ -1,9 +1,13 @@
-name: My-Subworkflow
+name: 'Workflow of manager flows'
 
 on:
   push:
     branches:
       - main
+      - release/*
+      - develop
+      - hotfix/*
+      - feature/*
 
   workflow_dispatch:
     inputs:
@@ -13,8 +17,13 @@ on:
         default: 'false'
 
 jobs:
-  setup:
+  tagger:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tag-type: ['patch']
+        # tag-type: ['patch', 'minor', 'major', 'stable']
+
     outputs:
       is-act: ${{ steps.vars.outputs.IS_AC }}
     steps:
@@ -23,8 +32,6 @@ jobs:
           with:
             fetch-tags: 0
             fetch-depth: 0
-
-
         - name: Retrieve app token
           id: app-token
           uses: ./.github/actions/gh-app-script
@@ -36,30 +43,7 @@ jobs:
           id: verision
           uses: ./.github/actions/semmantic-version
           with:
-            tag-type: stable
+            tag-type: ${{ matrix.tag-type }}
             token: ${{ steps.app-token.outputs.token }}
-            # private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-            # installation-id: ${{ secrets.GH_APP_INSTALLATION_ID }}
-
-
-        - uses: actions/github-script@v7
-          id: my-script
-          with:
-            result-encoding: string
-            github-token: ${{ steps.app-token.outputs.token }}
-            script: |
-                console.log(context)
-                github.rest.issues.addLabels({
-                    issue_number: context.issue.number,
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    labels: ['Triage']
-                })
-
-
-        - name: Checkout code
-          run: |
-            echo ${{ steps.my-script.outputs.result }}
-
-
+  
 
