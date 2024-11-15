@@ -1,4 +1,6 @@
--W .github/workflows/workflows-tag-commit.yml
+-W .github/workflows/workflows.yml
 -P ubuntu-latest=-self-hosted   
 --var-file .variables
 --secret-file .secrets
+-e event.json
+--action-offline-mode
