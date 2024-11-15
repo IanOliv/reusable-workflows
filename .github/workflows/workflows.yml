@@ -40,7 +40,32 @@ jobs:
             private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
             installation-id: ${{ secrets.GH_APP_INSTALLATION_ID }}
         - name: patch version
-          id: verision
+          id: patch-verision
+          if: ${{ matrix.tag-type == 'patch' }}
+          uses: ./.github/actions/semmantic-version
+          with:
+            tag-type: ${{ matrix.tag-type }}
+            token: ${{ steps.app-token.outputs.token }}
+  
+        - name: minor version
+          id: minor-verision
+          if: ${{ matrix.tag-type == 'minor' }}
+          uses: ./.github/actions/semmantic-version
+          with:
+            tag-type: ${{ matrix.tag-type }}
+            token: ${{ steps.app-token.outputs.token }}
+  
+        - name: patch version
+          id: major-verision
+          if: ${{ matrix.tag-type == 'major' }}
+          uses: ./.github/actions/semmantic-version
+          with:
+            tag-type: ${{ matrix.tag-type }}
+            token: ${{ steps.app-token.outputs.token }}
+  
+        - name: stable version
+          id: stable-verision
+          if: ${{ matrix.tag-type == 'stable' }}
           uses: ./.github/actions/semmantic-version
           with:
             tag-type: ${{ matrix.tag-type }}
