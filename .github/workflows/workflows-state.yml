@@ -29,6 +29,9 @@ jobs:
           ref: 'src'
           path: ./state
 
+      - name: list env variables
+        working-directory: ./state/terraform
+        run: env
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
