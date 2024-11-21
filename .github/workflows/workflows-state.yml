@@ -1,0 +1,43 @@
+name: "Terraform state workflow"
+
+on:
+  workflow_call:  # Makes this workflow reusable
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  install-terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name:  Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-tags: 0
+          fetch-depth: 0
+      - name: Retrieve app token
+        id: app-token
+        uses: ./.github/actions/gh-app-script
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          installation-id: ${{ secrets.GH_APP_INSTALLATION_ID }} 
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TOKEN }}
+          repository: 'IanOliv/state'
+          ref: 'src'
+          path: ./state
+
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.5.0"  # Specify version or remove for latest
+
+      - name: Verify Terraform installation
+        run: terraform --version
+
+      - name: Install Terraform
+        working-directory: ./state/terraform
+        run: terraform init
