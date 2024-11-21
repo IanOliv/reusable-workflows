@@ -41,3 +41,7 @@ jobs:
       - name: Install Terraform
         working-directory: ./state/terraform
         run: terraform init
+
+      - name: Terraform plan
+        working-directory: ./state/terraform
+        run: terraform plan
