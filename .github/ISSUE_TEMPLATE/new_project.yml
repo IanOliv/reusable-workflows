@@ -1,0 +1,28 @@
+name: New Project Proposal
+description: Propose a new project.
+title: "[New Project]: "
+labels: ["project", "documentation"]
+projects: ["IanOliv/10"]
+assignees:
+    - IanOliv
+body:
+    - type: markdown
+      attributes:
+        value: |
+            describe the project you would like to propose and provide as much detail as possible. 
+    - type: input
+      id: project-name
+      attributes:
+        label: Project Name
+        description: what is the name of the project you are proposing?
+        placeholder: ex. Awesome Project
+      validations:
+        required: true
+    - type: textarea
+      id: project-description
+      attributes:
+        label: Project Description
+        description: Provide a detailed description of the project. it's goals, and how it will be accomplished.
+        placeholder: Describe the project in detail. it's goals, and how it will be accomplished.
+      validations:
+        required: true
